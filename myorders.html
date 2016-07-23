@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>ECOM - HTML Mobile Template</title>
+	
+	<!-- font Raleway link -->  
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+	
+	<!-- all css here -->
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/swipebox.css">		        
+	<!-- font-awesome.min CSS -->      
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- style CSS -->          
+	<link rel="stylesheet" href="css/style.css">
+	<!-- style CSS -->          
+	<link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal menubg">
+    	<div class="menu-hoverlay">
+			<div class="line"></div>
+			<div class="logo-box">
+				<h3><img src="img/logo2.png" alt="" /></h3>
+			</div>
+			<div class="mainmenu">
+				<div class="row">
+				<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel" href="#" OnClick="parse_url('myaccount.html');">
+							<img src="img/menu/menu1/4.png" alt="">
+							MY ACCOUNT
+							</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
+							<img src="img/menu/menu1/5.png" alt="">
+							ADD PRODUCT</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
+							<img src="img/menu/menu1/5.png" alt="">
+							MY ORDERS</a>
+						</div>
+					</div>
+					
+					<div class="col-50">
+						<div class="menu" >
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
+							<img src="img/menu/menu1/6.png" alt="">
+							SHOPS</a>
+						</div>
+					</div>
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shopping-cart.html');">
+							<img src="img/menu/menu1/8.png" alt="">
+							MY CART</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('checkout.html');">
+							<img src="img/menu/menu1/9.png" alt="">
+							CHECKOUT</a>
+						</div>
+					</div>				
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
+							<img src="img/menu/menu1/2.png" alt="">
+							CALL US</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content"href="#" OnClick="parse_url('logout.html');">
+							<img src="img/menu/menu1/3.png" alt="">
+							LOGOUT</a>
+						</div>
+					</div>		
+				</div>
+			</div>
+			<!-- Menu end -->
+		</div>
+    </div>
+
+	    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+		<div class="view view-main">
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+    	<div class="left">
+				  <!-- left link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"><img src="img/menu.png" alt=""></a>
+					</div>
+					<!-- We have home navbar without left link-->
+					<div class="center sliding"><script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+<span style="color: #335e93;font-weight: bold;font-family: 'Open Sans', sans-serif; "> TRANSACTIONCITY </span></div>
+						<div class="right">
+				
+				
+					<img src="img/menu/cart.png"  onClick="parse_url('shopping-cart.html');" style="width:50px;height:40px;cursor:pointer;">
+					</div>
+				
+				
+    
+  </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="shopping-cart" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+        <div class="content-block-inner">
+        	<div class="cartpage">
+				<div class="cart-heading-1 ">
+					<h2><i class="fa fa-star-o"></i> My Orders</h2>
+				</div>
+				<div class="list-block">
+					<ul id="ul_orders">
+						
+						
+					</ul>
+				</div>
+				<input type="hidden" name="token" id="token" value="Qw234OpI90">
+				
+				
+				
+			</div>	
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ </div>
+</div>
+<!-- Js -->
+	<!-- jquery-1.11.3.min js -->         
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- Path to Framework7 Library JS --> 
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!--jquery.swipebox js --> 
+    <script type="text/javascript" src="js/jquery.swipebox.js"></script>
+	<!-- Path to your app js --> 
+    <script type="text/javascript" src="js/my-app.js"></script>
+<script>
+
+function parse_url(val)
+{
+document.location.href= val;
+
+}
+
+
+
+$(document).ready(function(){
+	
+	var user = window.localStorage["username"];
+	
+	
+	
+	if(user=="" || !user)
+	{
+	document.location.href='index.html';
+	}
+	else
+	{
+
+ fetch_orders();
+   }
+}); 
+
+function fetch_orders()
+{
+	 
+var user_id = window.localStorage["id"];
+
+var token = $('#token').val();
+
+	
+	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/get_my_orders.php",
+    {
+     user_id:user_id,
+	 token:token
+    },
+    function(data, status){
+        var obj = JSON.parse(data);
+        console.log(obj)
+		var tot = 0;
+		var cnt = 0;
+		var quantity=0;
+		var shipping_price=0;
+		  $.each(obj, function(key1,val1) {
+		  
+		  var td = val1.order_details;
+		  console.log(key1.user);
+
+		  var pd = val1.products;
+		  var html = '<li class="swipeout">';
+		  html+= "<div style='margin:10px;'>Shipping Address: "+td.shipping_address+" </div>";
+		  html+= "<div style='margin:10px;'>Order ID: "+td.orderid+" </div>";
+		  html+= "<div style='margin:10px;'>Invoice ID: "+td.invoice+" </div>";
+		  /*html+= "<div style='margin:10px;'>Order Date: "+td.invoice+" </div>";*/
+		  /*console.log(pd)*/
+		 
+		  $.each(pd, function(key,val) {
+		  	/*console.log(pd)*/
+		  	if(val.currency_code==window.localStorage['currency'])
+		  	{
+		  		shipping_price=val.shipping_price;
+		  	}
+		  	else
+		  	{
+		  		shipping_price=val.in_shipping_price;
+		  	}
+		  	  html+= '<div class="swipeout-content item-content"><div class="item-inner"><div class="cate-porduct-list"><div class="cartpage-image"><img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+val.picture1+'"></div><div class="cartpage-pro-dec"><div class="product-attributes"><div class="product-quantity"><label>Name :</label>'+val.title+'</div><div class="product-color"></div><div class="product-price"><label class="">Original Amount:</label> <span>'+val.price+'</span> </div><div class="product-price"><label class="">Shipping Amount:</label> <span>'+ shipping_price +'</span> </div><div class="product-price"><label class="">Amount:</label> <span>'+td.amount+'</span> </div><div class="product-price"><label class="">Seller:</label> <span>'+val.username+'</span> </div></div></div></div></div></div><div class="cartpage-button"></div>';
+ 
+   });
+  html+='</li>';
+ $('#ul_orders').append(html);
+  });
+
+  
+  });
+		
+  }	
+
+
+
+
+
+
+	</script>
+
+	
+		
+  
+	
+	
+	

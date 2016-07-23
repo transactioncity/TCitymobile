@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>ECOM - HTML Mobile Template</title>
+	
+	<!-- font Raleway link -->  
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+	
+	<!-- all css here -->
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/swipebox.css">		        
+	<!-- font-awesome.min CSS -->      
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- style CSS -->          
+	<link rel="stylesheet" href="css/style.css">
+	<!-- style CSS -->          
+	<link rel="stylesheet" href="css/responsive.css">
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal menubg">
+    	<div class="menu-hoverlay">
+			<div class="line"></div>
+			<div class="logo-box">
+				<h3><img src="img/logo2.png" alt="" /></h3>
+			</div>
+			<div class="mainmenu">
+				<div class="row">
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel" href="#" OnClick="parse_url('myaccount.html');">
+							<img src="img/menu/1.png" alt="">
+							MY ACCOUNT
+							</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
+							<img src="img/menu/2.png" alt="">
+							ADD PRODUCT</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
+							<img src="img/menu/2.png" alt="">
+							MY ORDERS</a>
+						</div>
+					</div>
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
+							<img src="img/menu/3.png" alt="">
+							SHOPS</a>
+						</div>
+					</div>
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shopping-cart.html');">
+							<img src="img/menu/5.png" alt="">
+							MY CART</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('checkout.html');">
+							<img src="img/menu/6.png" alt="">
+							CHECKOUT</a>
+						</div>
+					</div>				
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
+							<img src="img/menu/11.png" alt="">
+							CALL US</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content"href="#" OnClick="parse_url('logout.html');">
+							<img src="img/menu/12.png" alt="">
+							LOGOUT</a>
+						</div>
+					</div>		
+				</div>
+			</div>
+			<!-- Menu end -->
+		</div>
+    </div>
+
+
+
+
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+		<div class="view view-main">
+				<!-- Top Navbar-->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="left">
+				<a href="#" class="link icon-only open-panel"><img src="img/menu.png" alt=""></a>
+					</div>
+					
+					<div class="center sliding"><img src="img/menu/transaction-logo.png" height="40px" width="60px" alt="" /></div>
+					<div class="right">
+				
+				
+					<img src="img/menu/transaction-logo.png"  onClick="parse_url('shopping-cart.html');" style="width:40px;height:40px;cursor:pointer;">
+					</div>
+				</div>
+			</div>
+
+            <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+			<div class="pages">
+			  <!-- Page, data-page contains page name-->
+				<div data-page="shop-here" class="page">
+				<!-- Scrollable page content-->
+					<div class="page-content" style="margin-left:10px;">
+				
+					
+				
+				
+				<br>
+	 			<input type="hidden" name="token" id="token"  value="Qw234OpI90"/>		
+	 			<input type="hidden" name="offset" id="offset" value="0">
+
+				<h3 style="text-align:center;">type : <br>
+				   <select style=" width: 200px"  name="type" id="type" onchange="fetch_prod(); ">
+			    <option value="">All</option>  
+				<option value="1">Products</option>
+				<option value="7">classifieds</option>
+				
+		        </select>	
+				<span>
+				<h3 style="text-align:center;">Category : <br>
+			
+				<select style=" width: 200px"  name="category" id="category" onchange="fetch_prod();">
+				<option value="">All</option>
+													
+		        </select>	
+				
+				<h3 style="text-align:center;">Search Products:<br>
+				<input style=" width: 200px"  type="text" name="search" id="search" value="" placeholder="Search Products">
+                <!-- <button class="button button-big" style="width:150px;height:20px;line-height:20px;margin-top:15px;" OnClick="fetch_prod();" name="Search_btn">Search</button>
+				<br><br>
+					</span>
+ -->
+<div class="buttons-row" style="margin-top: 20px">
+
+ <a href="#" class="tab-link active" OnClick="parse_url('shop-here.html');"  >NEWEST</a>
+		
+					
+ <a href="#" class="tab-link" OnClick="buy_now(1);" >BUY NOW</a>
+		
+ 
+ <a href="#" class="tab-link" OnClick="buy_now(7);"> CLASSIFIED</a>
+		
+
+</div>
+
+
+
+    
+		      	<div class="row" id="main_single_content">
+		      		<!-- single content  start-->
+		      		
+		      		<!-- single content  end-->		      		
+		      		
+		      	</div>
+				<a href="#" OnClick="load_more();">Load More</a>		
+	        </div>
+      
+				 
+								
+						
+				
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+	
+	<!-- Js -->
+	<!-- jquery-1.11.3.min js -->         
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- Path to Framework7 Library JS --> 
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!--jquery.swipebox js --> 
+    <script type="text/javascript" src="js/jquery.swipebox.js"></script>
+	<!-- Path to your app js --> 
+    <script type="text/javascript" src="js/my-app.js"></script>
+	
+		<script type="text/javascript">
+		
+		 
+	
+		
+function fetch_category()
+{
+
+ var token = $('#token').val();  
+
+$.post("http://www.transactioncity.com/stagingnew/content/Auth/fetch_categories1.php",
+    {
+     token:token,
+	
+    },
+    function(data, status){
+     $('#category').html(data);
+	 $('#category').prepend('<option value="">All</option>');
+	  $('#category').val('');
+	 fetch_prod();
+  });
+
+}
+		
+function parse_url(val)
+{
+document.location.href= val;
+
+}
+	
+	$(document).ready(function(){
+	
+	var user = window.localStorage["username"];
+
+	
+	
+	if(user=="" || !user)
+	{
+	document.location.href='index.html';
+	}
+	else
+	{
+ $('#load_more').hide();
+ fetch_category();
+
+   }
+}); 
+
+
+function load_more()
+{
+
+ fetch_prod('load_more');
+}
+
+function view_cart()
+{
+
+ document.location.href='shopping-cart.html';
+}
+
+function fetch_prod(val)
+{
+	 
+if(val!="load_more")
+{
+$('#offset').val(0);
+ $('#main_single_content').html('');
+ }
+ var url = location.href;
+ var dataxx = url.split("?");
+ /*console.log(dataxx[1])*/
+ 
+ var offset = $('#offset').val();
+ var category = $('#category').val();	
+ var type= $('#type').val();
+ if(type=='')
+ { 
+ 	 if(dataxx[1]!=undefined)
+ 	 {
+ 	 	var datayy = dataxx[1].split("=");
+ 	    type = datayy[1];
+ 	 }
+     
+
+ }
+    var offsetx = parseFloat(offset)+10; 
+	var search = $('#search').val();
+	var user_id =  window.localStorage["id"];
+	$('#offset').val(offsetx);
+	
+	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/product_fetch.php",
+    {
+     offset:offset,
+	 category:category,
+	 type:type,
+	 search:search,
+	 user_id:user_id
+    },
+    function(data, status){
+        var obj = JSON.parse(data);
+        console.log(obj);
+        if(obj.length>0)
+        {
+        window.localStorage["currency"] = obj[1].converted_currrency_symbol;
+        var html='There are no product'	;
+        }
+		
+			$.each(obj, function(key,val) {
+		  
+	
+		  if(val.ptype=="1")
+		  {
+		    var buy_now = '<label style="width:150px;height:35px;line-height:35px;background:#2BCDC1;padding:5px;padding-left:10px;padding-right:10px;color:white;" name="buy_now">Buy Now</label>';
+          }
+		 else if(val.ptype=="7")
+			 {
+			 var buy_now = '<label style="width:150px;height:35px;line-height:35px;margin-top:15px;background:#2BCDC1;padding:5px;padding-left:10px;padding-right:10px;color:white;" name="classified">Classified</label>';
+			 }
+         
+ var html = '<div class="col-100 tablet-50" style="border-bottom: 1px #2bcdc1 solid"><a href="#" OnClick="next_page('+val.idx+')"><span style="font-size:16px;color:#000000;margin-top:5px">'+val.title+'</span></a><div class="single-product"><div class="row"><div class="col-50"><div class="pro-img"><img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+val.picture1+'" style="height:100px;width:100px;cursor:pointer;border:#000000 solid 3px;padding:3px" OnClick="next_page('+val.idx+')"></div></div>   <div class="col-50" style="margin-top:-10px;font-size:12px;float:left"><div class="pro-content" style="text-align:left"><br> '+val.converted_currrency_symbol+'  '+val.converted_price+'<div class=""><p>    <b><a href="#" style="color:red;style="width:30px;height:30px;" OnClick="seller_page('+val.uid+')">'+val.contactname+'</a><b>   <img src="http://www.transactioncity.com/stagingnew/content/flags/'+val.flag+'" style="width:30px;height:30px;"></p>  <input style="max-width:80px;width:auto;" type="number" id="qty_'+val.idx+'"  value="1"> <br><p style="margin-top:5px">'+val.available_quantity+' Available </div>   </div></div></div> </div><div class="add-cate" style="margin-top:-10px;font-size:12px"> <div class="single-product"><div class="row"> <div class="col-50"> <a href="#" style="margin-top:4px;" OnClick="add_to_cart('+val.idx+');"><i class="fa fa-shopping-basket"></i></a><a href="#" style="margin-top:4px;margin-left:5px" OnClick="add_to_wishlist('+val.idx+');"><i class="fa fa-heart"></i></a></div> <div class="col-50" style="margin-top:-10px;" ><p style="float:left">'+buy_now+'</p> </li></ul></div></div></div></div></div>';
+  $('#main_single_content').append(html);
+         });
+		  
+   
+		
+		
+	
+
+	 $('#load_more').show();
+		
+    });
+	
+	
+	
+}
+
+function next_page(val)
+{
+document.location.href= 'single-product.html?id='+val;
+
+}
+
+function buy_now(val)
+{
+document.location.href= 'shop-here.html?type='+val;
+}
+
+function seller_page(val)
+{
+document.location.href= 'seller.html?id='+val;
+}
+
+function add_to_cart(val)
+{
+
+var user_id = window.localStorage["id"];
+ var token = $('#token').val(); 
+var qty = $('#qty_'+val).val();
+
+$.post("http://www.transactioncity.com/stagingnew/content/Auth/add_to_cart.php",
+    {
+     user_id:user_id,
+	 pid:val,
+	 qty:qty,
+	 token:token
+    },
+    function(data, status){
+      if(data==1)
+	  {
+	  
+	   alert("Successfully added to cart");
+	   
+	   
+	  }
+	  else
+	  {
+	    alert("Could not add the product to the cart");
+	  }
+  });
+
+}
+
+function add_to_wishlist(val)
+{
+
+var user_id = window.localStorage["id"];
+ var token = $('#token').val(); 
+var qty = $('#qty_'+val).val();
+
+$.post("http://www.transactioncity.com/stagingnew/content/Auth/add_to_wishlist.php",
+    {
+     user_id:user_id,
+	 pid:val,
+	 qty:qty,
+	 token:token
+    },
+    function(data, status){
+      if(data==1)
+	  {
+	  
+	   alert("Successfully added to Wishlist");
+	   
+	   
+	  }
+	  else if(data==0)
+	  {
+	    alert("Could not add the product to the Wishlist");
+	  }
+	  else if(data==2)
+	  {
+	    alert("product already exists in the Wishlist");
+	  }
+  });
+
+}
+
+
+	</script>
+  </body>
+</html>
