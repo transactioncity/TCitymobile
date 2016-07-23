@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>ECOM - HTML Mobile Template</title>
+	
+	<!-- font Raleway link -->  
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+	
+
+	<!-- all css here -->
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/swipebox.css">		        
+	<!-- font-awesome.min CSS -->      
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- style CSS -->          
+	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- style CSS -->          
+	<link rel="stylesheet" href="css/responsive.css">
+		<style>
+
+
+#country-list{float:left;list-style:none;margin:0;padding:0;width:190px;cursor:pointer;}
+#country-list li{padding: 10px; background:#FAFAFA;border-bottom:#F0F0F0 1px solid;cursor:pointer;}
+#country-list li:hover{background:#F0F0F0;cursor:pointer;}
+
+</style>
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal menubg">
+    	<div class="menu-hoverlay">
+			<div class="line"></div>
+			<div class="logo-box">
+				<h3><img src="img/logo2.png" alt="" /></h3>
+			</div>
+			<div class="mainmenu">
+				<div class="row">
+				<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel" href="#" OnClick="parse_url('myaccount.html');">
+							<img src="img/menu/menu1/4.png" alt="">
+							MY ACCOUNT
+							</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
+							<img src="img/menu/menu1/5.png" alt="">
+							ADD PRODUCT</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
+							<img src="img/menu/menu1/5.png" alt="">
+							MY ORDERS</a>
+						</div>
+					</div>
+					
+					<div class="col-50">
+						<div class="menu" >
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
+							<img src="img/menu/menu1/6.png" alt="">
+							SHOPS</a>
+						</div>
+					</div>
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shopping-cart.html');">
+							<img src="img/menu/menu1/8.png" alt="">
+							MY CART</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('checkout.html');">
+							<img src="img/menu/menu1/9.png" alt="">
+							CHECKOUT</a>
+						</div>
+					</div>				
+					
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
+							<img src="img/menu/menu1/2.png" alt="">
+							CALL US</a>
+						</div>
+					</div>
+					<div class="col-50">
+						<div class="menu">
+						<a class="item-link close-panel item-content"href="#" OnClick="parse_url('logout.html');">
+							<img src="img/menu/menu1/3.png" alt="">
+							LOGOUT</a>
+						</div>
+					</div>		
+				</div>
+			</div>
+			<!-- Menu end -->
+		</div>
+    </div>
+	
+	<style>
+
+	</style>
+ <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+		<div class="view view-main">
+				<!-- Top Navbar-->
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+   
+	<div class="left">
+				  <!-- left link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"><img src="img/menu.png" alt=""></a>
+					</div>
+					<!-- We have home navbar without left link-->
+					<div class="center sliding"><script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script><span style="color: #335e93;font-weight: bold;font-family: 'Open Sans', sans-serif; "> TRANSACTIONCITY </span></div>
+						<div class="right">
+				
+				
+					<img src="img/menu/cart.png"  onClick="parse_url('shopping-cart.html');" style="width:50px;height:40px;cursor:pointer;">
+					</div>
+				
+  </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="portfolio" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+        <div class="content-block-inner">
+        <div class="contact-form">
+          <input type="hidden" name="token" id="token"  value="Qw234OpI90"/>
+
+
+		<br> 
+					<h1>Add PRODUCT/CLASSIFIED</h1><br><br>	
+
+                 Type : <br>
+			
+				<select  name="type" id="type" style="height:40px;width:100%">
+				<option value="">Please Select</option>
+                <option value="1">Buy Now</option>
+                <option value="7">Classified</option>
+                       					
+		       </select><br><br>					
+										
+			    Product Title : <br>
+				<input type="text" name="title" id="title" /><br>
+			
+				  Category : <br><br>
+			    <div class="frmSearch">
+				<input  type="text" name="category_id" id="category_id" value="" list="datalist">
+		        <div id="suggesstion-box"></div> 
+				</div>
+				<input  type="hidden" name="category" id="category" value="">
+			
+		        <br>
+				Description : <br>
+				<textarea name="description" id="description" cols="30" rows="8"></textarea><br>
+				Price : <br>
+				<input type="text" name="price" id="price" /><br>
+				Picture : <br>
+				<input type="file" name="picture1" id="picture1" /><br>
+				
+				
+				Quantity : <br>
+				<input type="text" name="qty" id="qty" /><br>
+				Available Quantity : <br>
+				<input type="text" name="available_qty" id="available_qty" /><br>
+				Colour : <br>
+				<input type="text" name="colour" id="colour" /><br>
+				Size : <br>
+				<input type="text" name="size" id="size" /><br>
+				
+				
+				<div class="item-content inputbox">
+				  <div class="item-inner"> 
+					<div class="item-input">
+					  <button OnClick="Save_product();" class="mybutton button-big">Save Product</button>
+					</div>
+				  </div>
+				</div>
+			
+		
+            
+         
+           
+            
+           
+           
+            
+           
+           
+            </div>
+           
+            
+            </div>
+            </div>
+           
+           
+         
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+<!-- Js -->
+	<!-- jquery-1.11.3.min js -->         
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- Path to Framework7 Library JS --> 
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!--jquery.swipebox js --> 
+    <script type="text/javascript" src="js/jquery.swipebox.js"></script>
+	<!-- Path to your app js --> 
+    <script type="text/javascript" src="js/my-app.js"></script>
+	
+	
+	   
+   
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+		<script type="text/javascript">
+		
+
+
+function selectCountry(id,name) {
+$("#category_id").val(name);
+$("#category").val(id);
+$("#suggesstion-box").hide();
+}
+		
+		
+			$(document).ready(function(){
+	
+	var user = window.localStorage["username"];
+	
+
+$("#category_id").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "http://www.transactioncity.com/stagingnew/content/Auth/fetch_categories.php",
+		data:{
+		q:$(this).val()
+		},
+		beforeSend: function(){
+			$("#category_id").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#category_id").css("background","#FFF");
+		}
+		});
+	});
+
+	
+	   
+	
+
+	if(user=="" || !user)
+	{
+	document.location.href='index.html';
+	}
+	else
+	{
+
+ 
+   }
+});
+	
+		
+function fetch_category()
+{
+
+ var token = $('#token').val();  
+
+$.post("http://www.transactioncity.com/stagingnew/content/Auth/fetch_categories.php",
+    {
+     token:token,
+	
+    },
+    function(data, status){
+   
+  });
+
+}
+		
+function parse_url(val)
+{
+document.location.href= val;
+
+}
+
+function Save_product(val)
+{
+ var file_data = $('#picture1').prop('files')[0];   
+  var form_data = new FormData();                  
+  form_data.append('file', file_data);
+  var user_id = window.localStorage["id"];   
+ var token = $('#token').val();  
+
+ var title = $('#title').val();
+
+  var price = $('#price').val();
+  var qty = $('#qty').val();
+  var size = $('#size').val();
+  var description = $('#description').val();
+  var available_qty = $('#available_qty').val();
+  var type = $('#type').val();
+  var colour = $('#colour').val();
+  var category = $('#category').val();
+ 
+ 
+  form_data.append('token', token); 
+  form_data.append('title', title); 
+  form_data.append('qty', qty); 
+  form_data.append('description', description); 
+  form_data.append('available_qty', available_qty); 
+  form_data.append('type', type); 
+  form_data.append('price', price); 
+ form_data.append('colour', colour); 
+  form_data.append('user_id', user_id);
+  form_data.append('category', category);
+
+ 
+	   $.ajax({
+                url: 'http://www.transactioncity.com/stagingnew/content/Auth/add_product.php', // point to server-side PHP script 
+                dataType: 'text',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(data){
+				if(data==1)
+				{
+				
+				var dataxx= "Succesfully added the product";
+				alert(dataxx); 
+				parse_url('shop-here.html');
+				}
+				else
+				{
+				
+				var dataxx= "Could not add the product";
+				alert(dataxx); 
+				}
+                  
+                }
+     });
+		
+}
+
+
+
+
+</script>
