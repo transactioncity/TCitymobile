@@ -13,7 +13,11 @@
     </description>
 
     <author href="https://transactioncity.com" email="support@transactioncity.com">
+<<<<<<< HEAD
         Transctioncity Team
+=======
+        Transactioncity Team
+>>>>>>> origin/master
     </author>
 
     <!-- Define the main entry-point to the application -->
