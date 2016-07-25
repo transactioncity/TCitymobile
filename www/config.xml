@@ -6,14 +6,14 @@
         id        = "com.phonegap.helloworld"
         version   = "1.0.0">
 
-    <name>Transactioncity</name>
+    <name>TransctionCity</name>
 
     <description>
-        Mobile App for Transactioncity.com
+        TransctionCity.Com Mobile Andriod pp
     </description>
 
-    <author href="https://transactioncity.com" email="support@transactioncity.com">
-        PhoneGap Team
+    <author href="http://transctioncity.com" email="support@transctioncity.com">
+        TransctionCity Team
     </author>
 
     <!-- Define the main entry-point to the application -->
