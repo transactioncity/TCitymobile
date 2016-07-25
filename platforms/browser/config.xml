@@ -5,7 +5,7 @@
         Mobile App for Transactioncity.com
     </description>
     <author email="support@transactioncity.com" href="https://transactioncity.com">
-        PhoneGap Team
+        Transctioncity Team
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
