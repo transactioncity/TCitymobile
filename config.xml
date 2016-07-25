@@ -53,6 +53,7 @@
    
     
     <!-- Define app icon and splashscreen for each platform. -->
+      <splash src="splash.png"/>
     <icon src="icon.png" />
     <platform name="android">
         <icon   src="www/res/icon/android/drawable-ldpi-icon.png"               density="ldpi" />
