@@ -27,7 +27,9 @@
 	<link rel="stylesheet" href="css/responsive.css">
 
 
-
+			<style>
+			.hide {display:none;}
+			</style>
 
   </head>
 
@@ -198,8 +200,8 @@
 				
 </div>
 
-<center><h3>	<a href="#" style="color: #335e93;margin-top: 20px;;" OnClick="load_featured_more();" id='load_featured_more'> Load More</a></h3>
-	</center> <div class="row"style="border-bottom: #335e93 solid 1px"> </div>
+<center><h3>	<a href="#" style="color: #335e93;margin-top: 20px;;" class="hide" OnClick="load_featured_more();" id='load_featured_more'> Load More</a></h3>
+	</center> <div class="row hide" id="ldiv" style="border-bottom: #335e93 solid 1px"> </div>
 
 
 	<center><h3 style="color: #000000; margin-top: 10px"> Products </h3></center>
@@ -213,8 +215,8 @@
 
 
 
-<center> <h3><a href="#"  OnClick="load_more();"  style="color: #335e93; margin-top: 20px;;" id='load_more'>  Load More</a></center></h3>
-<div class="row"style="border-bottom: #335e93 solid 1px"> </div>
+<center> <h3><a href="#"  OnClick="load_more();" class="hide"  style="color: #335e93; margin-top: 20px;;" id='load_more'>  Load More</a></center></h3>
+<div class="row hide" id="ldiv1" style="border-bottom: #335e93 solid 1px"> </div>
 
 </div>
 </div>
@@ -380,6 +382,12 @@ console.log(val)
 	  featured:0
     },
     function(data, status){
+
+    	if($("#load_more").hasClass('hide'))
+    	{
+    		$("#load_more").removeClass('hide')
+    		$("#ldiv").removeClass('hide')
+    	}
         var obj = JSON.parse(data);
 		/*window.localStorage["currency"] = obj[1].converted_currrency_symbol;*/
 		/*console.log(obj.length);*/
@@ -459,6 +467,11 @@ function fetch_featured_prod(val)
 	  featured:1
     },
     function(data, status){
+    	if($("#load_featured_more").hasClass('hide'))
+    	{
+    		$("#load_featured_more").removeClass('hide')
+    		$("#ldiv1").removeClass('hide')
+    	}
         var obj = JSON.parse(data);
 		/*window.localStorage["currency"] = obj[1].converted_currrency_symbol;*/
 		console.log(obj.length);

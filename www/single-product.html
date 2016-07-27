@@ -178,6 +178,7 @@ function fetch_product_by_id()
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/product_fetch_by_id.php",
     {
         product_id:product_id,
+        user_id:window.localStorage["username"]
 		
     },
     function(data, status){
@@ -186,11 +187,11 @@ function fetch_product_by_id()
          console.log(datayy);
 		 
 		 
-		 
+		 var rate = currencyConverter(datayy[7],datayy[8],datayy[2]) ;
 		 $('#hid').val(datayy[0]);
 		 $('#description').html(datayy[1]);
 		 $('#title').html(datayy[3]);
-		 $('#price').html('$'+datayy[2]);
+		 $('#price').html(datayy[8]+"   "+rate);
 		 $('#swiper-slide').html('<img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+datayy[4]+'">');
 		 $('#avail').val(datayy[5]);
 		 $('#seller').val(datayy[6]);
@@ -200,6 +201,26 @@ function fetch_product_by_id()
 	
 }
 
+
+		function httpGet(theUrl){
+		    var xmlHttp = null;
+		    xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "GET", theUrl,false);
+		    xmlHttp.send( null );
+		    return xmlHttp.responseText;
+		    }
+		    
+	function currencyConverter(currency_from,currency_to,currency_input){
+	    var yql_base_url = "https://query.yahooapis.com/v1/public/yql";
+	    var yql_query = 'select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20("'+currency_from+currency_to+'")';
+	    var yql_query_url = yql_base_url + "?q=" + yql_query + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+	    var http_response = httpGet(yql_query_url);
+	    var http_response_json = JSON.parse(http_response);
+	//console.log(http_response);
+
+	    //return http_response_json.query.results.rate.Rate;
+	    return parseFloat(currency_input)*http_response_json.query.results.rate.Rate;
+	    }
 
 function add_to_cart()
 {

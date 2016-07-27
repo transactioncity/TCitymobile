@@ -22,7 +22,9 @@
 			<link rel="stylesheet" href="css/style.css">
 			<!-- style CSS -->          
 			<link rel="stylesheet" href="css/responsive.css">
-			
+			<style>
+			.hide {display:none;}
+			</style>
 		  </head>
 		  <body>
 		    <!-- Status bar overlay for fullscreen mode-->
@@ -135,7 +137,7 @@
 						<!-- Scrollable page content-->
 							<div class="page-content">
 						
-						<!--<div id="wait" ><img src='img/loading.gif' width="64" height="64" /></div>-->
+					
 						
 						
 						<br>
@@ -181,15 +183,15 @@
 
 
 		    
-				      	<div class="row" id="main_single_content" style="border-bottom: 1px solid #000000">
+				      	<div class="row hide" id="main_single_content" style="border-bottom: 1px solid #000000;">
 				      		<!-- single content  start-->
 				      		<hr>
 				      		<!-- single content  end-->		      		
 				      		
 				      	</div>
-						<a href="#" OnClick="load_more();" style="color: #335e93;"> Load More</a>	
+						<a href="#" id="load" OnClick="load_more();" style="color: #335e93;" class="hide"> Load More</a>	
 
-		<div class="row"style="border-bottom: #335e93 solid 1px"> </div>
+		<div class="row hide" id="div1" style="border-bottom: #335e93 solid 1px;"> </div>
 
 			        </div>
 		      
@@ -234,6 +236,7 @@
 			else
 			{
 		 $('#load_more').hide();
+		 $('#loadmore').hide();
 		 fetch_category();
 
 		   }
@@ -330,6 +333,7 @@
 			var user_id =  window.localStorage["id"];
 			$('#offset').val(offsetx);
 			
+
 			 $.post("http://www.transactioncity.com/stagingnew/content/Auth/product_fetch.php",
 		    {
 		     offset:offset,
@@ -339,16 +343,27 @@
 			 user_id:user_id
 		    },
 		    function(data, status){
+		    	if($('#load').hasClass('hide'))
+		    	{
+		    		$('#load').removeClass('hide')
+						$('#div1').removeClass('hide')
+						$('#main_single_content').removeClass('hide')
+
+		    	}
+		    	        
 		        var obj = JSON.parse(data);
+
+						
 		        console.log(obj);
 		        if(obj.length>0)
 		        {
 		        window.localStorage["currency"] = obj[0].converted_currrency_symbol;
 		        /*var html='There are no product'	;*/
 		        }
+
 				
 					$.each(obj, function(key,val) {
-				  console.log(val.fromc+"  " +val.toc+" " + val.price)
+				  /*console.log(val.fromc+"  " +val.toc+" " + val.price)*/
 				  var rate = currencyConverter(val.fromc,val.toc,val.price) ;
 				 // console.log(rate)
 			
@@ -361,7 +376,7 @@
 					 var buy_now = '<button style="background:#335e93;color:#ffffff;border:none;padding:5px;padding-left:10px;padding-right:10px;" name="classified" OnClick="add_to_cart('+val.idx+');">Classified</button>';
 					 }
 		         
-		 var html = ' <div class="col-100 tablet-50" style="border-bottom:#335e93 solid 1px" ><a href="#" OnClick="next_page('+val.idx+')"><h2 style="font-size:16px;color:#000000;margin-top:10px;text-align:left;margin-left:20px">'+val.title+'</h2></a><div class="single-product"><div class="row" style="margin-top:-10px;"><div class="col-50"><div class="pro-img"><img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+val.picture1+'" style="height:100px;width:100px;cursor:pointer;border:#000000 solid 2px;padding:5px;" OnClick="next_page('+val.idx+')"></div></div> <div class="col-50" style="margin-top:-10px;font-size:12px;float:left"><div class="pro-content" style="text-align:left"><br> '+(val.title).substring(0,50)+'....' +'<div class=""><p>    <b> <div style="float:left;width:100%">  <a href="#" style="color:red;float:left ;" OnClick="seller_page('+val.uid+')">'+val.contactname+'</a><b><img src="http://www.transactioncity.com/stagingnew/content/flags/'+val.flag+'" style="width:30px;height:30px;float:right;margin-right:10px;"></p> </div> <b><p style="margin-top:10px">'+val.converted_currrency_symbol+'  '+ rate +' </b> </div>   </div></div></div> </div><div class="add-cate" style="margin-top:-20px;font-size:12px"> <div class="single-product"><div class="row" style="margin-top:10px"> <div class="col-50"> <a href="#" style="margin-top:10px;" OnClick="add_to_cart('+val.idx+');"><i class="fa fa-shopping-basket"></i></a><a href="#" style="margin-top:10px;margin-left:5px" OnClick="add_to_wishlist('+val.idx+');"><i class="fa fa-heart"></i></a></div> <div class="col-50" style="margin-top:-10px;" ><p style="float:left">'+buy_now+'</p> </li></ul></div></div>';
+		 var html = ' <div class="col-100 tablet-50" style="border-bottom:#335e93 solid 1px" ><a href="#" OnClick="next_page('+val.idx+')"><h2 style="font-size:16px;color:#000000;margin-top:10px;text-align:left;margin-left:20px">'+(val.title).substring(0,50)+'....'+'</h2></a><div class="single-product"><div class="row" style="margin-top:-10px;"><div class="col-50"><div class="pro-img"><img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+val.picture1+'" style="height:100px;width:100px;cursor:pointer;border:#000000 solid 2px;padding:5px;" OnClick="next_page('+val.idx+')"></div></div> <div class="col-50" style="margin-top:-10px;font-size:12px;float:left"><div class="pro-content" style="text-align:left"><br> '+(val.title).substring(0,50)+'....' +'<div class=""><p>    <b> <div style="float:left;width:100%">  <a href="#" style="color:red;float:left ;" OnClick="seller_page('+val.uid+')">'+val.contactname+'</a><b><img src="http://www.transactioncity.com/stagingnew/content/flags/'+val.flag+'" style="width:30px;height:30px;float:right;margin-right:10px;"></p> </div> <b><p style="margin-top:10px">'+val.converted_currrency_symbol+'  '+ rate +' </b> </div>   </div></div></div> </div><div class="add-cate" style="margin-top:-20px;font-size:12px"> <div class="single-product"><div class="row" style="margin-top:10px"> <div class="col-50"> <a href="#" style="margin-top:10px;" OnClick="add_to_cart('+val.idx+');"><i class="fa fa-shopping-basket"></i></a><a href="#" style="margin-top:10px;margin-left:5px" OnClick="add_to_wishlist('+val.idx+');"><i class="fa fa-heart"></i></a></div> <div class="col-50" style="margin-top:-10px;" ><p style="float:left">'+buy_now+'</p> </li></ul></div></div>';
 		  $('#main_single_content').append(html);
 		         });
 				  
