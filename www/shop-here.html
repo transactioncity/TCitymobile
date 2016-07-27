@@ -358,9 +358,16 @@
 		        if(obj.length>0)
 		        {
 		        window.localStorage["currency"] = obj[0].converted_currrency_symbol;
-		        /*var html='There are no product'	;*/
+		        /*'	;*/
 		        }
+		         if(obj.length==0)
+		         {
+		         	var html='There are no product';
+		         	$('#load').addClass('hide')
+					$('#div1').addClass('hide')
+					$('#main_single_content').html(html)
 
+		         }
 				
 					$.each(obj, function(key,val) {
 				  /*console.log(val.fromc+"  " +val.toc+" " + val.price)*/
