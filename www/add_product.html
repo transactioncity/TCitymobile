@@ -59,14 +59,14 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							ADD PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							MY ORDERS</a>
+							TRANSACTIONS</a>
 						</div>
 					</div>
 					
@@ -74,7 +74,7 @@
 						<div class="menu" >
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 							<img src="img/menu/menu1/6.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					
@@ -97,7 +97,7 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 							<img src="img/menu/menu1/2.png" alt="">
-							CALL US</a>
+							BROWSE</a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -153,7 +153,7 @@
 
 
 		<br> 
-					<h1>Add PRODUCT/CLASSIFIED</h1><br><br>	
+					<h1>POST PRODUCT/CLASSIFIED</h1><br><br>	
 
                  Type : <br>
 			
@@ -180,23 +180,30 @@
 				Price : <br>
 				<input type="text" name="price" id="price" /><br>
 				Picture : <br>
-				<input type="file" name="picture1" id="picture1" /><br>
+				<input style="border:none;margin-top: 10px" type="file" name="picture1" id="picture1" /><br>
 				
 				
 				Quantity : <br>
 				<input type="text" name="qty" id="qty" /><br>
-				Available Quantity : <br>
-				<input type="text" name="available_qty" id="available_qty" /><br>
-				Colour : <br>
+				<!--Available Quantity : <br>
+				<input type="text" name="available_qty" id="available_qty" /><br>-->
+				Color : <br>
 				<input type="text" name="colour" id="colour" /><br>
 				Size : <br>
 				<input type="text" name="size" id="size" /><br>
+				Domestic Shipping Price: <br>
+				<input type="text" name="domestic" id="domestic" /><br>
+				International Shipping Price: <br>
+				<input type="text" name="international" id="international" /><br>
+
+				Private Key: <br>
+				<input type="text" name="privatekey" id="privatekey" /><br>
 				
 				
 				<div class="item-content inputbox">
 				  <div class="item-inner"> 
 					<div class="item-input">
-					  <button OnClick="Save_product();" class="mybutton button-big">Save Product</button>
+					  <button OnClick="Save_product();" class="mybutton button-big">Post Product</button>
 					</div>
 				  </div>
 				</div>
@@ -333,7 +340,9 @@ function Save_product(val)
   var type = $('#type').val();
   var colour = $('#colour').val();
   var category = $('#category').val();
- 
+  var domestic=$('#domestic').val();
+  var international=$('#international').val();
+  var privatekey=$("#privatekey").val();
  
   form_data.append('token', token); 
   form_data.append('title', title); 
@@ -342,11 +351,67 @@ function Save_product(val)
   form_data.append('available_qty', available_qty); 
   form_data.append('type', type); 
   form_data.append('price', price); 
- form_data.append('colour', colour); 
+  form_data.append('colour', colour); 
   form_data.append('user_id', user_id);
   form_data.append('category', category);
+  form_data.append('shipping_price',domestic);
+  form_data.append('in_shipping_price',international);
+  form_data.append('product_access_key',privatekey);
 
+ var k = 0;
  
+if(type=="")
+ {
+	   
+	 	var dataxx= "Type is not selected";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ if(title=="")
+ {
+	   
+	 	var dataxx= "Product Title is not filled out";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ if(category=="")
+ {
+	   
+	 	var dataxx= "Category is not filled out";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ 
+if(description=="")
+ {
+	   
+	 	var dataxx= "Description is not filled out";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ 
+if(price=="")
+ {
+	   
+	 	var dataxx= "Price is not filled out";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ 		
+ if(firstname!="" && lastname!="" && username!="" && email!="" && passwordx!="" && passwordx==passwordxc)
+ {
+ 
+ k = 0;
+ 
+ }
+
+if(k==0)
+{ 
 	   $.ajax({
                 url: 'http://www.transactioncity.com/stagingnew/content/Auth/add_product.php', // point to server-side PHP script 
                 dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -360,14 +425,14 @@ function Save_product(val)
 				{
 				
 				var dataxx= "Succesfully added the product";
-				alert(dataxx); 
+				myApp.alert(dataxx); 
 				parse_url('shop-here.html');
 				}
 				else
 				{
 				
 				var dataxx= "Could not add the product";
-				alert(dataxx); 
+				myApp.alert(dataxx); 
 				}
                   
                 }
@@ -375,7 +440,7 @@ function Save_product(val)
 		
 }
 
-
+}
 
 
 </script>

@@ -50,21 +50,21 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/2.png" alt="">
-							ADD PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="shop-list.html">
 							<img src="img/menu/3.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="single-product.html">
 							<img src="img/menu/4.png" alt="">
-							PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -86,7 +86,7 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 							<img src="img/menu/11.png" alt="">
-							CALL US</a>
+							BROWSE </a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -113,8 +113,8 @@
   <div data-page="regsiter" class="page" style="background-color:black;">
    
 
-		  <div class="register-content" style="margin-top:-180px;" >
-			<img src="img/logo2.png"   alt=""></h3>
+		  <div class="register-content"  >
+			 <h3><img src="img/logo2.png" alt=""></h3>
 							
 				<input type="hidden" id="choice" value ="Add">
 				<input type="hidden" id="table" value ="user">
@@ -133,7 +133,10 @@
 					<span>Last Name:</span><br>
 					<input type="text" id="lastname" placeholder="Last Name">
 				</div>
-				
+				<div class="inputbox">
+					<span>Birthdate:</span><br>
+					 <input type="text" placeholder="Select date" readonly id="calendar-date-format">
+				</div>
 				<div class="inputbox">
 					<span>Username:</span><br>
 					<input type="text" id="username" placeholder="Username" Onkeyup="check_username();">
@@ -141,6 +144,10 @@
 				<div class="inputbox">
 					<span>Email:</span><br>
 					<input type="email" id="email" placeholder="email@gmail.com">
+				</div>
+				<div class="inputbox">
+					<span>Paypal Email:</span><br>
+					<input type="email" id="pemail" placeholder="email@gmail.com">
 				</div>
 				<div class="inputbox">
 					<span>Password:</span><br>
@@ -178,7 +185,11 @@
     <script type="text/javascript" src="js/my-app.js"></script>
       
 <script type="text/javascript">
-		
+var calendarDateFormat = myApp.calendar({
+    input: '#calendar-date-format'
+    
+});    
+
 function parse_url(val)
 {
 document.location.href= val;
@@ -202,54 +213,75 @@ var user = $('#user').val();
   var passwordx = $('#password').val();
    var passwordxc = $('#cpassword').val();
   var email = $('#email').val();
+  var pemail = $('#pemail').val();
+  var birthdate=$('#calendar-date-format').val();
+
  
  var k = 0;
  
 if(firstname=="")
  {
 	   
-	 	var dataxx= "firstname is not filled out";
-	    alert(dataxx);
+	 	var dataxx= "Firstname is not filled out";
+	    myApp.alert(dataxx);
         k = 1;  		
 	   
  }
  if(lastname=="")
  {
 	   
-	 	var dataxx= "lastname is not filled out";
-	    alert(dataxx);
+	 	var dataxx= "Lastname is not filled out";
+	    myApp.alert(dataxx);
         k = 1;  		
 	   
  }
+ if(birthdate=="")
+ {
+	   
+	 	var dataxx= "Birthdate is not filled out";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ 
 if(username=="")
  {
 	   
-	 	var dataxx= "username is not filled out";
-	    alert(dataxx);
+	 	var dataxx= "Username is not filled out";
+	    myApp.alert(dataxx);
         k = 1;  		
 	   
  }
+ 
 if(email=="")
  {
 	   
-	 	var dataxx= "email is not filled out";
-	    alert(dataxx);
+	 	var dataxx= "Email is not filled out";
+	    myApp.alert(dataxx);
+        k = 1;  		
+	   
+ }
+ if(pemail=="")
+ {
+	   
+	 	var dataxx= "Paypal email is not filled out";
+	    myApp.alert(dataxx);
         k = 1;  		
 	   
  }
 if(passwordx=="")
  {
 	   
-	 	var dataxx= "password is not filled out";
-	    alert(dataxx);
+	 	var dataxx= "Password is not filled out";
+	    myApp.alert(dataxx);
         k = 1;  		
 	   
  }
  if(passwordx!=passwordxc)
  {
 	   
-	 	var dataxx= "password and Confirm Password do not match";
-	    alert(dataxx);
+	 	var dataxx= "Password and Confirm Password do not match";
+	    myApp.alert(dataxx);
         k = 1;  		
 	   
  }
@@ -274,6 +306,8 @@ if(k==0)
                 username:username, 
                 password:passwordx, 
                 email:email,
+                paypal_email:pemail,
+                birthday:birthdate,
                 table:"user"  				
 				
 				},                         
@@ -283,14 +317,14 @@ if(k==0)
 				{
 				
 				var dataxx= "Succesfully created the user";
-				alert(dataxx); 
+				myApp.alert(dataxx); 
 				document.location.href='index.html';
 				}
 				else
 				{
 				
 				var dataxx= "Could not create the user";
-				alert(dataxx); 
+				myApp.alert(dataxx); 
 				}
                   
                 }
@@ -319,7 +353,7 @@ var username = $('#username').val();
 
         if(data=="1")
 		{
-	    alert("user already exists");
+	    myApp.alert("user already exists");
 	    $('#username').val('');
 	 
        }

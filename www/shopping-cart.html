@@ -49,14 +49,14 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							ADD PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							MY ORDERS</a>
+							TRANSACTIONS</a>
 						</div>
 					</div>
 					
@@ -64,7 +64,7 @@
 						<div class="menu" >
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 							<img src="img/menu/menu1/6.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					
@@ -135,8 +135,8 @@
       <div class="content-block">
         <div class="content-block-inner">
         	<div class="cartpage">
-				<div class="cart-heading-1 ">
-					<h2><i class="fa fa-star-o"></i> Shopping Cart</h2>
+				<div class="cart-heading">
+					<h2>  Shopping Cart</h2>
 				</div>
 				<div class="list-block">
 					<ul  id="ul_cart_items">
@@ -220,7 +220,10 @@ function fetch_prod()
 var user_id = window.localStorage["id"];
 
 
-	
+		 myApp.showPreloader();
+		    setTimeout(function () {
+		        myApp.hidePreloader();
+		    }, 2000);
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/get_cart.php",
     {
      user_id:user_id

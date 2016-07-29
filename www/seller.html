@@ -21,7 +21,7 @@
 
 	<!-- font-awesome.min CSS -->      
 	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<!-- style CSS -->          
+	<!-- style CSS -->        
 	<link rel="stylesheet" href="css/style.css">
 	<!-- style CSS -->          
 	<link rel="stylesheet" href="css/responsive.css">
@@ -59,14 +59,14 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							ADD PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							MY ORDERS</a>
+							TRANSACTIONS</a>
 						</div>
 					</div>
 					
@@ -74,7 +74,7 @@
 						<div class="menu" >
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 							<img src="img/menu/menu1/6.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					
@@ -97,7 +97,7 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 							<img src="img/menu/menu1/2.png" alt="">
-							CALL US</a>
+							BROWSE </a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -282,7 +282,11 @@ function fetch_seller_by_id()
 	 var seller_id = datayy[1];
 
 	//console.log(seller_id)
-	
+	 myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
+
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/seller_fetch_by_id.php",
     {
         seller_id:seller_id,
@@ -374,6 +378,11 @@ console.log(val)
 	 
 	 var seller_id = datayy[1];
 	
+	 myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
+
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/fetch_product_by_seller.php",
     {
      offset:offset,
@@ -413,7 +422,7 @@ console.log(val)
 		}
 		 else
 		 {
-		 	html+='<span style="text-align:center">There are no products</span>';
+		 	 html += '<div style="color:red"><center>No Product Found</center></div>';
 		 		$('#load_more').hide();
 		 }
 		 if(obj.length==2)
@@ -458,7 +467,12 @@ function fetch_featured_prod(val)
 	 var datayy = dataxx[1].split("=");
 	 
 	 var seller_id = datayy[1];
-	
+
+	 myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
+
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/fetch_product_by_seller.php",
     {
      offset:offset,
@@ -495,7 +509,7 @@ function fetch_featured_prod(val)
 		}
 		 else
 		 {
-		 		html+='<span style="color:red"><center>Opps.. There are no Products</center></span>';
+		 		html += '<div style="color:red"><center>No Product Found</center></div>';
 		 	$('#load_featured_more').hide();
 		 }
 		 if(obj.length==2)

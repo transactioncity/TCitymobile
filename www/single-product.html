@@ -69,16 +69,17 @@
 					<div class="col-100 tablet-60">
 						<div class="product-text">
 							<h4 id="title"></h4>
-							<span id="price" style="color: #335e93"></span>
+							PRODUCT TYPE: <p id="type"></p>
+							PRICE: <span id="price" style="color: #335e93"></span><br>
 							<input type="hidden" name="hid" id="hid" value="">
 							  <input type="hidden" name="token" id="token"  value="Qw234OpI90"/>
-						     AVAILABLE QTY:<p id="avail"></p>
-							 SELLER<p id="seller"></p>
+						     AVAILABLE QTY: <p id="avail"></p>
+							 SELLER: <p id="seller"></p>
 							<p id="description"></p>
 							
 							<h3>Quantity:</h3>
 							<form action="#">
-							<input type="number" value="1"><br><br>
+							<input type="number" value="1" id="qty"><br><br>
 
 							<img src="img/menu/cart.png" style="width:40px;height:40px;cursor:pointer;" OnClick="add_to_cart();">
 							
@@ -173,9 +174,12 @@ function fetch_product_by_id()
 	 
 	 var product_id = datayy[1];
 
+	 myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
 	
-	
-	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/product_fetch_by_id.php",
+	 $.post("http://transactioncity.com/stagingnew/content/Auth/product_fetch_by_id.php",
     {
         product_id:product_id,
         user_id:window.localStorage["username"]
@@ -193,8 +197,12 @@ function fetch_product_by_id()
 		 $('#title').html(datayy[3]);
 		 $('#price').html(datayy[8]+"   "+rate);
 		 $('#swiper-slide').html('<img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+datayy[4]+'">');
-		 $('#avail').val(datayy[5]);
-		 $('#seller').val(datayy[6]);
+		 $('#avail').html(datayy[5]);
+		 $('#seller').html(datayy[6]);
+		 if(datayy[9]==1)
+		 $('#type').html('Buy Now')
+		 else if(datayy[9]==7)
+		 $('#type').html('Classified')
     });
 	
 	
@@ -224,10 +232,19 @@ function fetch_product_by_id()
 
 function add_to_cart()
 {
+var url = location.href;
+	 
+var dataxx = url.split("?");
+	
+var datayy = dataxx[1].split("=");
+ 
+var val = datayy[1];
 
 var user_id = window.localStorage["id"];
- var token = $('#token').val(); 
-var qty = $('#qty_'+val).val();
+
+var token = $('#token').val(); 
+
+var qty = $('#qty').val();
 
 $.post("http://www.transactioncity.com/stagingnew/content/Auth/add_to_cart.php",
     {
@@ -240,13 +257,13 @@ $.post("http://www.transactioncity.com/stagingnew/content/Auth/add_to_cart.php",
       if(data==1)
 	  {
 	  
-	   alert("Successfully added to cart");
+	   myApp.alert("Successfully added to cart");
 	   
 	   
 	  }
 	  else
 	  {
-	    alert("Could not add the product to the cart");
+	    myApp.alert("Could not add the product to the cart");
 	  }
   });
 
@@ -257,7 +274,7 @@ function add_to_wishlist()
 
 var user_id = window.localStorage["id"];
  var token = $('#token').val(); 
-var qty = $('#qty_'+val).val();
+var qty = $('#qty').val();
 
 $.post("http://www.transactioncity.com/stagingnew/content/Auth/add_to_wishlist.php",
     {
@@ -270,17 +287,17 @@ $.post("http://www.transactioncity.com/stagingnew/content/Auth/add_to_wishlist.p
       if(data==1)
 	  {
 	  
-	   alert("Successfully added to Wishlist");
+	   myApp.alert("Successfully added to Wishlist");
 	   
 	   
 	  }
 	  else if(data==0)
 	  {
-	    alert("Could not add the product to the Wishlist");
+	    myApp.alert("Could not add the product to the Wishlist");
 	  }
 	  else if(data==2)
 	  {
-	    alert("product already exists in the Wishlist");
+	    myApp.alert("product already exists in the Wishlist");
 	  }
   });
 
@@ -343,7 +360,7 @@ $.post("http://www.transactioncity.com/stagingnew/content/Auth/post_comments.php
 	 pid:pid
     },
     function(data, status){
-     alert("Comments posted Successfully");
+     myApp.alert("Comments posted Successfully");
 	 document.location.reload();
   });
 }

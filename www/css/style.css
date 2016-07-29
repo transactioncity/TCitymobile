@@ -45,6 +45,7 @@
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
+
 #wait
 {
   height:100% !important;
@@ -144,6 +145,7 @@ body{font-family: 'Open Sans', sans-serif; overflow-x:hidden;}
   color: #000000;
     padding: 20px 6px;
     display: block;
+    font-size: 12px;
 }
 .menu {
   margin-bottom: 15px;

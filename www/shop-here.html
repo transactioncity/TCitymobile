@@ -52,14 +52,14 @@
 								<div class="menu">
 								<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 									<img src="img/menu/menu1/5.png" alt="">
-									ADD PRODUCT</a>
+									POST PRODUCT</a>
 								</div>
 							</div>
 							<div class="col-50">
 								<div class="menu">
 								<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 									<img src="img/menu/menu1/5.png" alt="">
-									MY ORDERS</a>
+									TRANSACTIONS </a>
 								</div>
 							</div>
 							
@@ -67,7 +67,7 @@
 								<div class="menu" >
 								<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 									<img src="img/menu/menu1/6.png" alt="">
-									SHOPS</a>
+									STORE </a>
 								</div>
 							</div>
 							
@@ -90,7 +90,7 @@
 								<div class="menu">
 								<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 									<img src="img/menu/menu1/2.png" alt="">
-									CALL US</a>
+									BROWSE </a>
 								</div>
 							</div>
 							<div class="col-50">
@@ -333,8 +333,12 @@
 			var user_id =  window.localStorage["id"];
 			$('#offset').val(offsetx);
 			
+			 myApp.showPreloader();
+		    setTimeout(function () {
+		        myApp.hidePreloader();
+		    }, 2000);
 
-			 $.post("http://www.transactioncity.com/stagingnew/content/Auth/product_fetch.php",
+			 $.post("http://transactioncity.com/stagingnew/content/Auth/product_fetch.php",
 		    {
 		     offset:offset,
 			 category:category,
@@ -458,13 +462,13 @@
 		      if(data==1)
 			  {
 			  
-			   alert("Successfully added to cart");
+			   myApp.alert("Successfully added to cart");
 			   
 			   
 			  }
 			  else
 			  {
-			    alert("Could not add the product to the cart");
+			    myApp.alert("Could not add the product to the cart");
 			  }
 		  });
 
@@ -488,17 +492,17 @@
 		      if(data==1)
 			  {
 			  
-			   alert("Successfully added to Wishlist");
+			   myApp.alert("Successfully added to Wishlist");
 			   
 			   
 			  }
 			  else if(data==0)
 			  {
-			    alert("Could not add the product to the Wishlist");
+			    myApp.alert("Could not add the product to the Wishlist");
 			  }
 			  else if(data==2)
 			  {
-			    alert("product already exists in the Wishlist");
+			    myApp.alert("product already exists in the Wishlist");
 			  }
 		  });
 

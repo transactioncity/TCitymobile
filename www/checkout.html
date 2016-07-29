@@ -50,14 +50,14 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							ADD PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							MY ORDERS</a>
+							TRANSACTIONS </a>
 						</div>
 					</div>
 					
@@ -65,7 +65,7 @@
 						<div class="menu" >
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 							<img src="img/menu/menu1/6.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					
@@ -88,7 +88,7 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 							<img src="img/menu/menu1/2.png" alt="">
-							CALL US</a>
+							BROWSE</a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -116,9 +116,9 @@
 				  <!-- left link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"><img src="img/menu.png" alt=""></a>
 					</div>
 					<!-- We have home navbar without left link-->
-				<div class="center sliding"><script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
+				<div class="center sliding"><!--<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
 <script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>
-<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script><span style="color: #335e93;font-weight: bold;font-family: 'Open Sans', sans-serif; "> TRANSACTIONCITY </span></div>
+<script type="text/javascript" src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js'></script>--><span style="color: #335e93;font-weight: bold;font-family: 'Open Sans', sans-serif; "> TRANSACTIONCITY </span></div>
 					<div class="right">
 				
 				
@@ -138,8 +138,8 @@
       <div class="content-block">
         <div class="content-block-inner">
 			<div class="cartbox">
-				<div class="cart-heading-1 ">
-					<h2><i class="fa fa-star-o"></i> Checkout</h2>
+				<div class="cart-heading">
+					<h2> Checkout</h2>
 				</div>
 				<div class="check-contenttext">
 				
@@ -297,19 +297,31 @@ var user_id = window.localStorage["id"];
 	 var shipping_price=0;
 	 var gtot=0;
 	 var html1 = '';
+	  myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
+    
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/get_cart.php",
     {
      user_id:user_id
     },
     function(data, status){
+    	/*console.log(data)*/
 	 var obj = JSON.parse(data);
-	// console.log(obj)
+	 /*console.log(obj);*/
 	 
 	
 	  $.each(obj, function(key,val) {
 	  
 	  var pd = val.product_details;
-	 /*console.log(pd.currency_code);*/
+	  console.log(pd)
+	 
+	 if(pd.currency_code==null)
+	 pd.currency_code='USD';
+
+	  console.log(pd.currency_code);
+
 	 if(pd.currency_code == window.localStorage['currency'])
 	 {
 	 	shipping_price= parseInt(shipping_price) + parseInt(pd.shipping_price);

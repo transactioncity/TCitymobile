@@ -36,7 +36,7 @@ var app = {
         app.receivedEvent('deviceready');
         function onDeviceReady() {
        //window.open = cordova.InAppBrowser.open;
-       cb = window.plugins.childBrowser;
+       //cb = window.plugins.childBrowser;
         }
     },
     // Update DOM on a Received Event

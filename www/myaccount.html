@@ -49,14 +49,14 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							ADD PRODUCT</a>
+							<span style="text-align: left;"> POST PRODUCT </span></a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							MY ORDERS</a>
+							TRANSACTIONS</a>
 						</div>
 					</div>
 					
@@ -64,7 +64,7 @@
 						<div class="menu" >
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 							<img src="img/menu/menu1/6.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					
@@ -87,7 +87,7 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 							<img src="img/menu/menu1/2.png" alt="">
-							CALL US</a>
+							BROWSE</a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -141,63 +141,74 @@
 		 
 											
 												
-			    First Name : <br>
+			    First Name : 
 				<input type="text" name="firstname" id="firstname" /><br>
 				
 		<br>
 				Last Name : <br>
 				<input type="text" name="lastname" id="lastname" ><br>
-				username : <br>
+				User Name : <br>
 				<input type="text" name="username" id="username" /><br>
-				
+				Password : <br>
+				<div class="row"> 
+
+				<div class="col-lg-10" style="width:800px">
+
+				 <input readonly value="*********"></input> </div>
+
+				<div class="col-lg-2">
+
+
+				<button type="button" name="password" id="password" class="mybutton pull-right" style="margin-bottom: -5x"> Edit</button></div></div>
+				<br>
 				Email : <br>
 				<input type="text" name="email" id="email" /><br>
 				<span id="address1">
 				<h1>Primary Address</h1>
 				
-				contactname<br>
+				Contact Name<br>
 				<input type="text" name="contactname" id="contactname1" /><br><br>
-				phonenumber<br>
+				Phone Number<br>
 				<input type="text" name="phonenumber" id="phonenumber1" /><br><br>
-				country<br>
+				Country<br>
 				<input type="text" name="country" id="country1" /><br><br>
-				state<br>
+				State<br>
 				<input type="text" name="state" id="state1" /><br><br>
-				city<br>
+				City<br>
 				<input type="text" name="city" id="city1" /><br><br>
-				street<br>
+				Street<br>
 				<input type="text" name="street" id="street1" /><br><br>
-				postcode<br>
+				Post Code<br>
 				<input type="text" name="postcode" id="postcode1" /><br><br>
-				website<br>
+				Website<br>
 				<input type="text" name="website" id="website1" /><br><br>
 				</span>
 				<span id="address1">
 				<h1>Secodnary Address</h1>
 				
-				contactname<br>
+				Contact Name<br>
 				<input type="text" name="contactname" id="contactname2" /><br><br>
-				phonenumber<br>
+				Phone Number<br>
 				<input type="text" name="phonenumber" id="phonenumber2" /><br><br>
-				country<br>
+				Country<br>
 				<input type="text" name="country" id="country2" /><br><br>
-				state<br>
+				State<br>
 				<input type="text" name="state" id="state2" /><br><br>
-				city<br>
+				City<br>
 				<input type="text" name="city" id="city2" /><br><br>
-				street<br>
+				Street<br>
 				<input type="text" name="street" id="street2" /><br><br>
-				postcode<br>
+				Post Code<br>
 				<input type="text" name="postcode" id="postcode2" /><br><br>
-				website<br>
+				Website<br>
 				<input type="text" name="website" id="website2" /><br><br>
 				</span>
 				
 				
-				photo : <br>
-				<input type="file" name="photo" id="photo" /><br>
+				Photo : <br>
+				<input style="border:none;margin-top: 10px" type="file" name="photo" id="photo" /> <br>
 				
-				
+					
 				
 				
 				
@@ -239,6 +250,15 @@
 </div>
   </div>
 </div>
+<div class="modal" id='modal'>
+  <div class="modal-inner">
+         <div class="modal-title"></div>
+               <div class="modal-text"</div>
+                   </div>
+     <div class="modal-buttons">
+            <span class="modal-button modal-button-bold"></span>
+         </div>
+  </div>            
 <!-- Js -->
 	<!-- jquery-1.11.3.min js -->         
 	<script src="js/jquery-1.11.3.min.js"></script>
@@ -251,7 +271,68 @@
 	
 	 
 		<script type="text/javascript">
-		
+		var myApp = new Framework7();
+ 
+var $$ = Dom7;
+ 
+$$('#password').on('click', function () {
+	 myApp.modal({
+    title:  'Change Password',
+    afterText:'<label>Current Password<label><input type="password" name="oldpassword" id="oldpassword"><br>'+
+    		  '<label>New Password<label><input type="password" name="newpassword" id="newpassword"><br>'+
+    		  '<label>Confirm Password<label><input type="password" name="cnpassword" id="cnpassword"><br><span ="color:red" id="msg"></span>'	,
+    buttons: [
+      {
+        text: 'Ok',
+        onClick: function() {
+          var oldpassword=$('#oldpassword').val();	
+          var newpassword=$('#newpassword').val();
+          var cnpassword=$('#cnpassword').val();
+          var token = $('#token').val(); 
+          if(newpassword==cnpassword)
+          {
+          		 $.post("http://transactioncity.com/stagingnew/content/Auth/change_pass.php",
+				    {
+				        newpassword:newpassword,
+				        oldpassword:oldpassword,
+				        token:token,
+				        user_id:window.localStorage["id"]
+						
+				    },
+				    function(data, status){
+					
+					    if(data==1)
+					    {
+					    	myApp.alert('Password Changed');
+					    }
+					    else if(data==0)
+					    {
+					    	myApp.alert('Please Enter Correct Old Password');
+					    }
+				    });
+					
+          }
+         else
+         {
+					    	myApp.alert('Please Enter Correct Confirm Password');
+
+         }
+
+   
+	
+        }
+      },
+      {
+        text: 'Cancel',
+        onClick: function() {
+          
+        }
+      }
+    ]
+  })
+});
+ 
+
 function get_user_details()
 {
 	 
@@ -268,11 +349,12 @@ var token = $('#token').val();
     function(data, status){
    	 
 	    var dataxx = JSON.parse(data);
+	    /*console.log(dataxx);*/
 		$('#firstname').val(dataxx.firstname);
 
  $('#lastname').val(dataxx.lastname);
  $('#username').val(dataxx.username);
- 
+ /*$('#password').val(dataxx.password);*/
   $('#email').val(dataxx.email);
   
 
@@ -408,14 +490,14 @@ var website2 = $('#website2').val();
 				{
 				
 				var dataxx= "Succesfully Updated the user";
-				alert(dataxx); 
+				myApp.alert(dataxx); 
 				
 				}
 				else
 				{
 				
 				var dataxx= "Could not Update the user";
-				alert(dataxx); 
+				myApp.alert(dataxx); 
 				}
                   
                 }

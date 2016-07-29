@@ -49,14 +49,14 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('add_product.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							ADD PRODUCT</a>
+							POST PRODUCT</a>
 						</div>
 					</div>
 					<div class="col-50">
 						<div class="menu">
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('myorders.html');">
 							<img src="img/menu/menu1/5.png" alt="">
-							MY ORDERS</a>
+							TRANSACTIONS</a>
 						</div>
 					</div>
 					
@@ -64,7 +64,7 @@
 						<div class="menu" >
 						<a class="item-link close-panel item-content" href="#" OnClick="parse_url('shop-here.html');">
 							<img src="img/menu/menu1/6.png" alt="">
-							SHOPS</a>
+							STORE</a>
 						</div>
 					</div>
 					
@@ -87,7 +87,7 @@
 						<div class="menu">
 						<a class="item-link close-panel item-content external" href="tel:+88-01627-600206">
 							<img src="img/menu/menu1/2.png" alt="">
-							CALL US</a>
+							BROWSE</a>
 						</div>
 					</div>
 					<div class="col-50">
@@ -137,10 +137,18 @@
       <div class="content-block">
         <div class="content-block-inner">
         	<div class="cartpage">
-				<div class="cart-heading-1 ">
-					<h2><i class="fa fa-star-o"></i> My Orders</h2>
+				<div class="cart-heading">
+					<h2> Transactions </h2>
 				</div>
+				<div class="buttons-row" >
+
+		              <a href="#"   class="tab-link" id='purchase' OnClick="parse_url('myorders.html');"> Purchases </a>
+		              <a href="#"   class="tab-link" id='sold' OnClick="parse_url('myorders.html?type=sold')"> Sold </a>
+			
+				</div>
+				<div id='nop' style="list-style-type:none"></div>
 				<div class="list-block">
+
 					<ul id="ul_orders">
 						
 						
@@ -151,6 +159,7 @@
 				
 				
 			</div>	
+			
         </div>
       </div>
     </div>
@@ -190,8 +199,22 @@ $(document).ready(function(){
 	}
 	else
 	{
+     var url = location.href;
+	 var dataxx = url.split("?");
+	 var type="";
+	if(dataxx[1]!=undefined)
+	{
+	 var datayy = dataxx[1].split("=");
+	 
+	 type = datayy[1];
 
- fetch_orders();
+	 fetch_sold();
+	}
+	else
+	 {
+		fetch_orders();
+	 }
+	 
    }
 }); 
 
@@ -202,6 +225,10 @@ var user_id = window.localStorage["id"];
 
 var token = $('#token').val();
 
+      myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
 	
 	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/get_my_orders.php",
     {
@@ -209,8 +236,18 @@ var token = $('#token').val();
 	 token:token
     },
     function(data, status){
+    	$('#purchase').addClass('active');
+    	$('#sold').removeClass('active');
         var obj = JSON.parse(data);
         console.log(obj)
+        if(obj.length==0)
+        {
+        	var html = '<div style="color:red"><center>No Transaction Found</center></div>';
+        	
+ 			$('#nop').append(html);
+        }
+        
+       
 		var tot = 0;
 		var cnt = 0;
 		var quantity=0;
@@ -251,7 +288,75 @@ var token = $('#token').val();
   }	
 
 
+function fetch_sold()
+{
+	 
+var user_id = window.localStorage["id"];
 
+var token = $('#token').val();
+
+	 myApp.showPreloader();
+    setTimeout(function () {
+        myApp.hidePreloader();
+    }, 2000);
+
+	 $.post("http://www.transactioncity.com/stagingnew/content/Auth/get_sold_orders.php",
+    {
+     user_id:user_id,
+	 token:token
+    },
+    function(data, status){
+    	$('#purchase').removeClass('active');
+    	$('#sold').addClass('active');
+
+        var obj = JSON.parse(data);
+         if(obj.length==0)
+        {
+        	var html = '<div style="color:red"><center>No Transaction Found</center></div>';
+        	
+ 			$('#nop').append(html);
+        }
+        
+       
+        console.log(obj)
+		var tot = 0;
+		var cnt = 0;
+		var quantity=0;
+		var shipping_price=0;
+		  $.each(obj, function(key1,val1) {
+		  
+		  var td = val1.order_details;
+		  console.log(key1.user);
+
+		  var pd = val1.products;
+		  var html = '<li class="swipeout">';
+		  html+= "<div style='margin:10px;'>Shipping Address: "+td.shipping_address+" </div>";
+		  html+= "<div style='margin:10px;'>Order ID: "+td.orderid+" </div>";
+		  html+= "<div style='margin:10px;'>Invoice ID: "+td.invoice+" </div>";
+		  /*html+= "<div style='margin:10px;'>Order Date: "+td.invoice+" </div>";*/
+		  /*console.log(pd)*/
+		 
+		  $.each(pd, function(key,val) {
+		  	/*console.log(pd)*/
+		  	if(val.currency_code==window.localStorage['currency'])
+		  	{
+		  		shipping_price=val.shipping_price;
+		  	}
+		  	else
+		  	{
+		  		shipping_price=val.in_shipping_price;
+		  	}
+		  	  html+= '<div class="swipeout-content item-content"><div class="item-inner"><div class="cate-porduct-list"><div class="cartpage-image"><img src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+val.picture1+'"></div><div class="cartpage-pro-dec"><div class="product-attributes"><div class="product-quantity"><label>Name :</label>'+val.title+'</div><div class="product-color"></div><div class="product-price"><label class="">Original Amount:</label> <span>'+val.price+'</span> </div><div class="product-price"><label class="">Shipping Amount:</label> <span>'+ shipping_price +'</span> </div><div class="product-price"><label class="">Amount:</label> <span>'+td.amount+'</span> </div><div class="product-price"><label class="">Seller:</label> <span>'+val.username+'</span> </div></div></div></div></div></div><div class="cartpage-button"></div>';
+ 
+   });
+  html+='</li>';
+ $('#ul_orders').append(html);
+  });
+
+  
+  });
+		
+  }	
 
 
 
