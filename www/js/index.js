@@ -41,6 +41,7 @@ var app = {
         }
     },
     onBackKeyDown:function(){
+        app.receivedEvent('backbutton');
         function onBackKeyDown() 
         {
          navigator.app.exitApp();
