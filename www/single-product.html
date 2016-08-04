@@ -251,8 +251,12 @@ function fetch_product_by_id()
 	     var datayy = data.split("||"); 
          console.log(datayy);
 		 
-		 
+		 if(datayy[7]!=datayy[8])
 		 var rate = currencyConverter(datayy[7],datayy[8],datayy[2]) ;
+		 else
+		 var rate=datayy[2]
+
+
 		 $('#hid').val(datayy[0]);
 		 $('#description').html(datayy[1]);
 		 $('#title').html(datayy[3]);
