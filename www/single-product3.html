@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" >
-
+<html>
   <head>
-<meta charset="UTF-16">
-
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -12,8 +10,7 @@
 	<!-- font Raleway link -->  
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
-	<link type="text/css" href="/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
-<script type="text/javascript" src="/cometchat/cometchatjs.php" charset="utf-8"></script>
+	
 	<!-- all css here -->
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.ios.min.css">
@@ -46,8 +43,8 @@
   <!-- Page, data-page contains page name-->
   <div data-page="product" class="page">
     <!-- Scrollable page content-->
-    <div class="page-content" style="margin: 0px">
-      <div class="content-block">
+    <div class="page-content">
+      <div class="content-block pagemargine">
         <div class="content-block-inner">
 			<div class="mens-product">
 				<div class="row">
@@ -63,13 +60,18 @@
 								     </div>   </div>
 								      </div>  
 
-								         		<h5 style="font-size: 14px;margin-top: 10px"> <span > Seller : </span><span style="color: red;font-weight: bold;" id="seller"></span></h5>
+								         <h5 style="margin-top: 10px;font-size: 14px">  Available Qty : <span id="avail"></span></h5> 
+
+						   	<h5 style="font-size: 14px"> <span > Seller : </span><span style="color: red;font-weight: bold;" id="seller"></span></h5>
 
 
 						   	<div class="row">
 
 								<div class="col-40">
 
+								<input type="button" class="tab-link" OnClick="add_to_cart();" style="padding: 5px;color: #ffffff;background-color: #335e93;border: none"
+							name="Buy Now" value="Buy Now" >
+							</form>	
 
 							<!-- <img src="img/menu/cart.png" style="width:40px;height:40px;cursor:pointer;" OnClick="add_to_cart();"> -->
 
@@ -78,7 +80,6 @@
 							<div class="col-60" >
 
 							
-							</form>	
 
 							</div>
 						</div>
@@ -98,22 +99,19 @@
 						<div class="product-text">
 							<h4  style="font-size: 14px;text-align: justify;"  id="title"></h4> <br>
 
-							<!-- <h5 style="font-size: 14px">Product Type : <span id="type"></span></h5> -->
+							<h5 style="font-size: 14px">Product Type : <span id="type"></span></h5>
 
 							<h5 style="font-size: 14px">Price: <span id="price" style="color: #335e93;font-weight: bold;"> </span></h5>
 							<input type="hidden" name="hid" id="hid" value="">
 							  <input type="hidden" name="token" id="token"  value="Qw234OpI90"/>
 					
 
-						 <!--  <h5 style="margin-top: 10px;font-size: 14px">Quantity :  <input style="height: 12px" type="number" value="1" id="qty"> </h5>     
-							<form action="#"> -->
+						  <h5 style="margin-top: 10px;font-size: 14px">Quantity :  <input style="height: 12px" type="number" value="1" id="qty"> </h5>     
+							<form action="#">
 							
-								<h5 style="margin-top: 12px;font-size: 14px">  Available Qty : <span id="avail"></span></h5> 
-
-						   
+								
 							
-							<input type="button" class="tab-link pull-right" style="padding: 5px;color: #ffffff;background-color: #335e93;border: none"
-							name="Buy Now" value="Buy Now" >
+							
 
 
 							
@@ -127,20 +125,10 @@
 												
 							</div>
 						
-
-						  <h3  style="color: #335e93; font-weight: bold;text-align: center;"> Description </h3>
-
-
-
-						  	
 							<div class="col-100" style="border-top: 1px solid #335e93;">
-
 						<div class="product-text">
 
-
-						  
-
-							<p style="text-align: justify; font-size: 14px;margin-top: 5px;padding-bottom: 5px;border-bottom: 1px solid #335e93" accept-charset="utf-8"  id="description"></p>
+							<p style="text-align: justify; font-size: 14px;margin-top: 5px;padding-bottom: 5px;border-bottom: 1px solid #335e93"  id="description"></p>
 
 
 							<h2 style="font-style: italic; color: #335e93;font-size: 16px">Comments</h2>
@@ -257,7 +245,7 @@ function fetch_product_by_id()
 		 $('#description').html(datayy[1]);
 		 $('#title').html(datayy[3]);
 		 $('#price').html(datayy[8]+"   "+rate);
-		 $('#swiper-slide').html('<img style="height:140px;width:140px;cursor:pointer;border:#000000 solid 2px;padding:3px;"  src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+datayy[4]+'">');
+		 $('#swiper-slide').html('<img style="height:120px;width:120px;cursor:pointer;border:#000000 solid 2px;padding:3px;" src="http://transactioncity.com/stagingnew/content/uploads/products/pictures/'+datayy[4]+'">');
 		 $('#avail').html(datayy[5]);
 		 $('#seller').html(datayy[6]);
 		 if(datayy[9]==1)
@@ -391,7 +379,7 @@ $.post("http://www.transactioncity.com/stagingnew/content/Auth/fetch_comments.ph
 	  $.each(obj, function(key,val) {
 	  
 	
-	 html+= '<h3> Posted By : <span style="color:red;font-weight:bold">'         +val.user_name+     '</span> </h3>  <h3>  ON : <span style="color:#335e93;">'      +val.comment_datetime+  ' </span> </h3> <div class="col-100" style="font-size:16px;font-style:italic;border:1px solid #335e93;padding:3px;text-align:justify"> '    +val.comment+  '</div> <br>'         ;
+	 html+= '<br><br>'+val.comment+' posted by: '+val.user_name+' ON '+val.comment_datetime+'<br>';
 	  
 	  });
 	  
