@@ -374,15 +374,15 @@
 		         }
 				
 					$.each(obj, function(key,val) {
-				  /*console.log(val.fromc+"  " +val.toc+" " + val.price)*/
-				  if(val.fromc!=val.toc)
-				  {
-				  	var rate = currencyConverter(val.fromc,val.toc,val.price) ;
-				  }
-					else
-					 {
-					 	var rate=val.price;  
-					 }
+				  console.log(val.fromc+"  " +val.toc+" " + val.price)
+					 /* if(val.fromc==val.toc)
+					  {
+					  var rate=val.price; 
+					  }
+				   else
+					 {*/
+					 	var rate = currencyConverter(val.fromc,val.toc,val.price) ;	 
+					 /*}*/
 		 			
 
 				 // console.log(rate)
