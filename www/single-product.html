@@ -252,9 +252,14 @@ function fetch_product_by_id()
          console.log(datayy);
 		 
 		 if(datayy[7]!=datayy[8])
-		 var rate = currencyConverter(datayy[7],datayy[8],datayy[2]) ;
+		 {
+		 	var rate = currencyConverter(datayy[7],datayy[8],datayy[2]) ;
+		 }
 		 else
-		 var rate=datayy[2]
+		 {
+		 	 var rate=datayy[2];
+		 }
+		
 
 
 		 $('#hid').val(datayy[0]);
