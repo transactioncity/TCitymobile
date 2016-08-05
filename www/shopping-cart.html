@@ -121,7 +121,17 @@
 					<div class="right">
 				
 				
-					<img src="img/menu/cart.png"  onClick="parse_url('shopping-cart.html');" style="width:50px;height:40px;cursor:pointer;">
+				<ul style="margin-right:10px">
+							<li class="account_cart" ><a href="" onClick="parse_url('shopping-cart.html');"><img style="margin-top: 5px;background-color: #ffffff"    src="img/cart-top.png"   style="width:30px;height:30px;cursor:pointer;position: relative;"> </a>  </li>
+							<!-- 
+							-->
+
+
+							<span id="current_cart_count">0</span>
+
+
+
+							</ul>
 					</div>
 				
     
@@ -201,8 +211,9 @@ $(document).ready(function(){
 	
 	var user = window.localStorage["username"];
 	
-	
-	
+
+		     
+		   
 	if(user=="" || !user)
 	{
 	document.location.href='index.html';
@@ -231,8 +242,16 @@ var user_id = window.localStorage["id"];
     function(data, status){
         var obj = JSON.parse(data);
 		var tot = 0;
+		var cont=obj.length;
+		  $("#current_cart_count").html(cont);
+	
 		  $.each(obj, function(key,val) {
      var pd = val.product_details;
+     if(pd.picture1=="")
+     {
+     	pd.picture1="transactioncity_image.jpg";
+     }
+
    var html = '<li class="swipeout"><div class="swipeout-content item-content"><div class="item-inner"><div class="cate-porduct-list"><div class="cartpage-image"><a href="#"><img alt="" src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+pd.picture1+'"></a></div><div class="cartpage-pro-dec"><div class="product-attributes"><div class="product-quantity"><label>Name :</label>'+pd.title+'</div><div class="product-quantity"><label>Qty :</label><input type="number" id="qty_'+val.id+'" value="'+val.quantity+'" class=""></div><div class="product-color"></div><div class="product-price"><label class="">Price:</label> <span>'+val.price+'</span> </div></div></div></div></div></div><div class="cartpage-button"><img src="del.png" style="width:45px;height:45px;cursor:pointer;" onClick="remove_item('+val.id+');"><img src="up.png"  style="width:45px;height:45px;cursor:pointer;" onClick="update_item('+val.id+');"></div></li>';
    
    tot = parseFloat(tot) + parseFloat(val.quantity) * parseFloat(val.price);
@@ -260,6 +279,7 @@ var token = $('#token').val();
 	 token:token
     },
     function(data, status){
+
         document.location.reload();
 		
 		
@@ -279,6 +299,7 @@ var token = $('#token').val();
 	 token:token
     },
     function(data, status){
+
        document.location.reload();
 		
 		

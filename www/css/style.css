@@ -45,7 +45,22 @@
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
+#current_cart_count{
 
+   background: none repeat scroll 0 0 #cc0000;
+   border-radius: 11px;
+   color: #fff;
+   margin-top: -30px;
+   font-size: 9px;
+   height: 13px;
+   left: 14px;
+
+   margin-right: 50px;
+   padding: 1px 2px;
+   position: absolute;
+   text-align: center;
+   width: 10px;
+}
 #wait
 {
   height:100% !important;

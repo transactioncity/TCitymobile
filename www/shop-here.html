@@ -124,7 +124,18 @@
 							<div class="right">
 						
 						
-							<img src="img/menu/cart.png"  onClick="parse_url('shopping-cart.html');" style="width:50px;height:40px;cursor:pointer;">
+							
+							<ul style="margin-right:10px">
+							<li class="account_cart" ><a href="" onClick="parse_url('shopping-cart.html');"><img style="margin-top: 5px;background-color: #ffffff"    src="img/cart-top.png"   style="width:30px;height:30px;cursor:pointer;position: relative;"> </a>  </li>
+							<!-- 
+							-->
+
+
+							<span id="current_cart_count">0</span>
+
+
+
+							</ul>
 							</div>
 						</div>
 					</div>
@@ -362,6 +373,8 @@
 		        if(obj.length>0)
 		        {
 		        window.localStorage["currency"] = obj[0].converted_currrency_symbol;
+		        window.localStorage["cart"]=obj[0].count;
+		         $("#current_cart_count").html(obj[0].count);
 		        /*'	;*/
 		        }
 		         if(obj.length==0)
@@ -375,6 +388,7 @@
 				
 					$.each(obj, function(key,val) {
 				  console.log(val.fromc+"  " +val.toc+" " + val.price)
+
 					 /* if(val.fromc==val.toc)
 					  {
 					  var rate=val.price; 
@@ -468,16 +482,19 @@
 			 token:token
 		    },
 		    function(data, status){
-		      if(data==1)
+
+		      if(data==0)
 			  {
-			  
-			   myApp.alert("Successfully added to cart");
-			   
+			  	
+			   myApp.alert("Could not add the product to the cart");
 			   
 			  }
 			  else
 			  {
-			    myApp.alert("Could not add the product to the cart");
+			    
+			  	
+			   $("#current_cart_count").html(data);
+			   myApp.alert("Successfully added to cart");
 			  }
 		  });
 

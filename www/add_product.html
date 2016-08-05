@@ -137,8 +137,18 @@
 								<div class="right">
 						
 						
-							<img src="img/menu/cart.png"  onClick="parse_url('shopping-cart.html');" style="width:50px;height:40px;cursor:pointer;">
-							</div>
+						<ul style="margin-right:10px">
+							<li class="account_cart" ><a href="" onClick="parse_url('shopping-cart.html');"><img style="margin-top: 5px;background-color: #ffffff"    src="img/cart-top.png"   style="width:30px;height:30px;cursor:pointer;position: relative;"> </a>  </li>
+							<!-- 
+							-->
+
+
+							<span id="current_cart_count">0</span>
+
+
+
+							</ul>
+</div>
 						
 		  </div>
 		</div>
@@ -573,7 +583,10 @@
 				
 			$(document).ready(function(){
 			/*$('.colorPicker').colorPicker();*/
-		
+		     var cartcount=window.localStorage["cart"];
+		     
+		     $("#current_cart_count").html(cartcount);
+
 			var user = window.localStorage["username"];
 			
 			var token = $('#token').val();  
