@@ -113,7 +113,7 @@
 						   
 							
 							<input type="button" class="tab-link pull-right" style="padding: 5px;color: #ffffff;background-color: #335e93;border: none"
-							name="Buy Now" value="Buy Now" OnClick="add_to_cart();" >
+							name="Buy Now" id="BuyNow"  >
 
 
 							
@@ -243,7 +243,7 @@ function fetch_product_by_id()
 	 $.post("http://transactioncity.com/stagingnew/content/Auth/product_fetch_by_id.php",
     {
         product_id:product_id,
-        user_id:window.localStorage["username"]
+        user_id:window.localStorage["id"]
 		
     },
     function(data, status){
@@ -270,14 +270,36 @@ function fetch_product_by_id()
 		 $('#avail').html(datayy[5]);
 		 $('#seller').html(datayy[6]);
 		 if(datayy[9]==1)
-		 $('#type').html('Buy Now')
+		 $('#BuyNow').val('Buy Now')
 		 else if(datayy[9]==7)
-		 $('#type').html('Classified')
+		 $('#BuyNow').val('Classified')
+
+       
+		 if(datayy[10]==window.localStorage["id"])
+		 {
+		 	$('#BuyNow').attr("OnClick","your_product();")
+		 }
+		 else
+		 {
+		 	$('#BuyNow').attr("OnClick","add_to_cart();")
+
+		 }
+
+		 
+		 	
+		 
     });
 	
 	
 	
 }
+
+function your_product()
+{
+	myApp.alert('This Product is yours');
+
+}
+
 
 
 		function httpGet(theUrl){

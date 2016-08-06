@@ -202,7 +202,7 @@
 					       
 						  
 					        </div>
-							 <center> <input  class="mybutton" type="submit" name="Place order" value="Place Order"></center> 
+							 <center> <input onClick="parse_url('myorders.html')" class="mybutton" type="submit" name="Place order" value="Place Order"></center> 
 							</form>  
 					</div>
 				</div>
@@ -229,9 +229,7 @@
 	
 	/*console.log($('#checkout_ids').val());*/
 $(document).ready(function(){
-var cartcount=window.localStorage["cart"];
-		     
-		     $("#current_cart_count").html(cartcount);
+
 /*$('#frm').submit(function(e) {
 	e.preventDefault();
 	var user=$('#checkout_user').val();
@@ -263,7 +261,9 @@ var cartcount=window.localStorage["cart"];
 
 });
 */
-
+var cartcount=window.localStorage["cart"];
+		     
+		     $("#current_cart_count").html(cartcount);
 fetch_address();
 
 });

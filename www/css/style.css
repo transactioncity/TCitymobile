@@ -45,6 +45,19 @@
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
+.getpercent{
+background: none repeat scroll 0 0 green;
+    border-radius: 0 0;
+    color: #fff;
+    font-weight: bold;
+    left: 0;
+    opacity: 0.7;
+    padding: 8px 0;
+    position: absolute;
+    top: 135px;
+    width: 100%;
+    z-index: 100;
+}
 #current_cart_count{
 
    background: none repeat scroll 0 0 #cc0000;
