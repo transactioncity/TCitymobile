@@ -194,7 +194,7 @@
 									</div>											
 								
 								
-							<form id='frm' name='frm' method="post" action="http://www.transactioncity.com/stagingnew/checkoutmobile/checkout" >	
+							<form id='frm' name='frm'>	
 							<div id="checkout_form">
 								<input type="hidden" name="checkout_user" id="checkout_user" value="">
 								<input type="hidden" name="checkout_ids" id="checkout_ids" value="">
@@ -202,7 +202,7 @@
 					       
 						  
 					        </div>
-							 <center> <input onClick="parse_url('myorders.html')" class="mybutton" type="submit" name="Place order" value="Place Order"></center> 
+							 <center> <input  class="mybutton" type="submit" name="Place order" value="Place Order"></center> 
 							</form>  
 					</div>
 				</div>
@@ -230,24 +230,24 @@
 	/*console.log($('#checkout_ids').val());*/
 $(document).ready(function(){
 
-/*$('#frm').submit(function(e) {
+$('#frm').submit(function(e) {
 	e.preventDefault();
 	var user=$('#checkout_user').val();
-	var id=$('#checkout_ids').val();
+	var cid=$('#checkout_ids').val();
 	var address=$('#checkout_addresses').val()
 
-	console.log(id);
-   var url = 'http://www.transactioncity.com/stagingnew/checkoutmobile/checkout?checkout_user='+user+'&checkout_ids='+id+'checkout_addresses'+address;
+	
+   var url = 'http://www.transactioncity.com/stagingnew/checkoutmobile/checkout?checkout_user='+user+'&checkout_ids=['+cid+']&checkout_addresses='+address;
    var target = '_self';
    var options = 'location=yes,closebuttoncaption=Done'
    var ref = cordova.InAppBrowser.open(url, target, options);
-
+console.log(url);
    ref.addEventListener('loadstart', loadstartCallback);
    ref.addEventListener('loadstop', loadstopCallback);
    ref.addEventListener('loadloaderror', loaderrorCallback);
-   /*ref.addEventListener('exit', exitCallback);*/
+   ref.addEventListener('exit', exitCallback);
 
-  /* function loadstartCallback(event) {
+   function loadstartCallback(event) {
       console.log('Loading started: '  + event.url)
    }
 
@@ -259,8 +259,13 @@ $(document).ready(function(){
       console.log('Loading error: ' + error.message)
    }
 
+   function exitCallback()
+   {
+   	ref.close();
+
+   }
+
 });
-*/
 var cartcount=window.localStorage["cart"];
 		     
 		     $("#current_cart_count").html(cartcount);
@@ -319,10 +324,10 @@ var user_id = window.localStorage["id"];
      user_id:user_id
     },
     function(data, status){
-    	/*console.log(data)*/
-	 var obj = JSON.parse(data);
+    	/*console.log(data)
+	
 	 /*console.log(obj);*/
-	 
+	  var obj = JSON.parse(data);
 	
 	  $.each(obj, function(key,val) {
 	  
@@ -351,7 +356,7 @@ var user_id = window.localStorage["id"];
 	  var html = '<tr><td>'+pd.title+'</td><td class="text-center">$'+val.price+'</td><td class="text-center">'+val.quantity+'</td><td class="text-center">$'+ tot +'</td></tr>';
 	   
 	 // console.log(val.product_details.shipping_price)
-	   html1+=val.id+'#';
+	   html1+=val.id+',';
 	  $('#productsxyz').append(html1);
 	  $('#order').append(html);
 	  cnt++;
