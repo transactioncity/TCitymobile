@@ -251,25 +251,29 @@ var token = $('#token').val();
     	$('#purchase').addClass('active');
     	$('#sold').removeClass('active');
         var obj = JSON.parse(data);
-        console.log(obj)
+        console.log(obj[0])
         if(obj.length==0)
         {
         	var html = '<div style="color:red"><center>No Transaction Found</center></div>';
         	
  			$('#nop').append(html);
         }
+      
         
        
 		var tot = 0;
 		var cnt = 0;
 		var quantity=0;
 		var shipping_price=0;
+		
 		  $.each(obj, function(key1,val1) {
 		  
 		  var td = val1.order_details;
 		  console.log(key1.user);
 
 		  var pd = val1.products;
+		  window.localStorage['cart']=pd[0].cont;
+        	$("#current_cart_count").html(pd[0].cont);
 		  var html = '<li class="swipeout">';
 		  html+= "<div style='margin:10px;'>Shipping Address: "+td.shipping_address+" </div>";
 		  html+= "<div style='margin:10px;'>Order ID: "+td.orderid+" </div>";
