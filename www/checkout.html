@@ -324,34 +324,55 @@ var user_id = window.localStorage["id"];
      user_id:user_id
     },
     function(data, status){
-    	/*console.log(data)
-	
-	 /*console.log(obj);*/
-	  var obj = JSON.parse(data);
-	
+    	/*console.log(data)*/
+	 
+	 var obj = JSON.parse(data);console.log(obj);
+	 var flag=true;
+	 var toc;
+	 var user_currency=window.localStorage['currency'];
+	 console.log('user_currency'+user_currency)
+	 var supported_currency=['AUD','BRL','CAD','CZK','DKK','EUR','HKD','HUF','ILS','JPY','MYR','MXN','NOK','NZD','PHP','PLN','GBP','RUB','SGD','SEK','CHF','TWD','THB','USD'];
+	 var arr=$.inArray(user_currency, supported_currency );
+	if(arr==0)
+		 {
+		 	/*fromc='USD';*/
+		 	toc=user_currency;
+		 	console.log(toc);
+		 	
+		 }
+		 else 
+		 {
+		 	toc='USD';
+		 	myApp.alert('Your Currency '+user_currency+' is not supported by Paypal, Hence amount will be convert the US $ amount');
+		 }
+		
+
+
 	  $.each(obj, function(key,val) {
+
 	  
 	  var pd = val.product_details;
-	  console.log(pd)
 	 
 	 if(pd.currency_code==null)
 	 pd.currency_code='USD';
 
-	  console.log(pd.currency_code);
+	if(pd.currency_symbole==null)
+	 pd.currency_symbol='$';
 
-	 if(pd.currency_code == window.localStorage['currency'])
+	 if(pd.currency_code == user_currency)
 	 {
-	 	shipping_price= parseInt(shipping_price) + parseInt(pd.shipping_price);
+	 	shipping_price= parseFloat(shipping_price) + parseFloat(pd.shipping_price);
 	 }
 	 else
 	 {
-	 	shipping_price= parseInt(shipping_price) + parseInt(pd.in_shipping_price);
+	 	shipping_price= parseFloat(shipping_price) + parseFloat(pd.in_shipping_price);
 	 }
 	  
+
 	  var tot = parseFloat(val.price) * parseFloat(val.quantity);
 	  
-	  sub_tot = sub_tot + tot ;
-	   gtot= sub_tot + shipping_price;
+	   sub_tot = parseFloat(sub_tot) + parseFloat(tot) ;
+	   gtot= parseFloat(sub_tot) + parseFloat(shipping_price);
 	  
 	  var html = '<tr><td>'+pd.title+'</td><td class="text-center">$'+val.price+'</td><td class="text-center">'+val.quantity+'</td><td class="text-center">$'+ tot +'</td></tr>';
 	   
@@ -390,5 +411,23 @@ $.post("http://www.transactioncity.com/stagingnew/content/Auth/place_order.php",
   });
 
 }
+function httpGet(theUrl){
+		    var xmlHttp = null;
+		    xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "GET", theUrl,false);
+		    xmlHttp.send( null );
+		    return xmlHttp.responseText;
+		    }
+		    
+	function currencyConverter(currency_from,currency_to,currency_input){
+	    var yql_base_url = "https://query.yahooapis.com/v1/public/yql";
+	    var yql_query = 'select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20("'+currency_from+currency_to+'")';
+	    var yql_query_url = yql_base_url + "?q=" + yql_query + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+	    var http_response = httpGet(yql_query_url);
+	    var http_response_json = JSON.parse(http_response);
+	//console.log(http_response);
 
+	    //return http_response_json.query.results.rate.Rate;
+	    return parseFloat(currency_input)*http_response_json.query.results.rate.Rate;
+	    }
 </script>
