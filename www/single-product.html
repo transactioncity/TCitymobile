@@ -63,7 +63,7 @@
 								     </div>   </div>
 								      </div>  
 
-								         		<h5 style="font-size: 14px;margin-top: 10px"> <span > Seller : </span><span style="color: red;font-weight: bold;" id="seller"></span></h5>
+								         		<h5 style="font-size: 14px;margin-top: 10px"> <span > Seller : </span><a href="" id="sellerpage"><span style="color: red;font-weight: bold;" id="seller"></span></a></h5>
 
 
 						   	<div class="row">
@@ -285,7 +285,7 @@ function fetch_product_by_id()
 
 		 }
 
-		 
+		  $('#sellerpage').attr("OnClick","seller("+datayy[10]+")");
 		 	
 		 
     });
@@ -294,6 +294,10 @@ function fetch_product_by_id()
 	
 }
 
+function seller(val)
+{
+	document.location.href="seller.html?id="+val;
+}
 function your_product()
 {
 	myApp.alert('This Product is yours');
