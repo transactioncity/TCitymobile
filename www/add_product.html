@@ -176,37 +176,37 @@
 				       </select>				
 												
 					    Product Title  
-						<input  style="margin-top: 10px"  type="text" name="title" id="title" /><br>
+						<input  style="margin-top: 10px"  type="text" name="title" id="title" placeholder="Product Title"/><br>
 					
 						  Category 
 					    <div class="frmSearch">
-						<input style="margin-top: 10px;margin-bottom: 10px" type="text" name="category_id" id="category_id" value="" list="datalist">
+						<input style="margin-top: 10px;margin-bottom: 10px" placeholder="Category" type="text" name="category_id" id="category_id" value="" list="datalist">
 				        <div id="suggesstion-box"></div> 
 						</div>
 						<input  type="hidden" name="category" id="category" value="">
 					
 				      
 						Description 
-						<textarea style="margin-top: 10px" name="description" id="description" cols="30" rows="8"></textarea><br>
+						<textarea style="margin-top: 10px" placeholder="Description" name="description" id="description" cols="30" rows="8"></textarea><br>
 						Price 
-						<input style="margin-top: 10px" type="text" name="price" id="price" /><br>
+						<input style="margin-top: 10px" type="text" name="price" id="price" placeholder="Price"/><br>
 						Picture : <br>
 						<input style="border:none;margin-top: 10px" type="file" name="picture1" id="picture1" /><br>
 						
 						
 						Quantity 
-						<input style="margin-top: 10px" type="text" name="qty" id="qty" /><br>
+						<input style="margin-top: 10px" type="text" name="qty" id="qty" placeholder="Quantity"/><br>
 						<!--Available Quantity : <br>
 						<input type="text" name="available_qty" id="available_qty" /><br>-->
 						Color 
-						<input style="margin-top: 10px" class="jscolor" name="colour" id="colour" value="ffa200"><br>
+						<input style="margin-top: 10px" class="jscolor" name="colour" id="colour" placeholder="Color"><br>
 
 						Size
-						<input style="margin-top: 10px" type="text" name="size" id="size" /><br>
+						<input style="margin-top: 10px" type="text" name="size" id="size" placeholder="Size"/><br>
 						Email 
-						<input style="margin-top: 10px" type="text" name="email" id="email" /><br>
+						<input style="margin-top: 10px" type="text" name="email" id="email" placeholder="Email"/><br>
 						Notes 
-						<textarea style="margin-top: 10px" name='notes' id="notes"></textarea><br>
+						<textarea style="margin-top: 10px" name='notes' id="notes" placeholder="Notes"></textarea><br>
 						
 						Promote Your Product <br>
 					
@@ -256,7 +256,7 @@
 						</div>
 						Private Key
 
-						<input style="margin-top: 10px" type="text" name="privatekey" id="privatekey" readonly/><br>
+						<input style="margin-top: 10px" type="text" name="privatekey" id="privatekey" placeholder="Private Key" readonly/><br>
 						Product Condition
 						<select id="pcondition" name="pcondition" style="height:40px;width:100%;margin-top: 10px;margin-bottom: 10px">
 		                                <option value="1">New</option>
@@ -275,7 +275,7 @@
 		                                
 		                                </select><br>
 		                Taxes 
-		                <input style="margin-top: 10px" type="text" name="taxes" id="taxes" ><br> 
+		                <input style="margin-top: 10px" type="text" name="taxes" id="taxes" placeholder="Taxes"><br> 
 		                <div id="offerdiv">
 		               
 		                	<div class="row">
@@ -361,11 +361,11 @@
 		                
 		                </select><br>
 		                <div id="buydiv"><label class"hidediscount">Buy </label><br>
-		                <input type="text" id="buy" name="buy"><br> </div>
+		                <input type="text" id="buy" name="buy" placeholder="Buy"><br> </div>
 		                <div id="getdiv"><label class"hidediscount">Get </label><br>
-		                <input type="text" id="get" name="get"><br> </div>
+		                <input type="text" id="get" name="get" placeholder="Get"><br> </div>
 		                <div id="discountamtdiv"><label class"hidediscount">Discount</label> <br>
-		                <input type="text" id="discount" name="discount"><br>  
+		                <input type="text" id="discount" name="discount" placeholder="Discount"><br>  
 		                <select id="amt_type" name="amt_type" style="height:40px;">
 		                 <option value="">select Type</option>
 		                 <option value="1">$</option>
@@ -418,16 +418,16 @@
 		                                    <option value="Pickup">Pickup</option>
 		                </select><br>
 						Domestic Shipping Price
-						<input  style="margin-top: 10px" type="text" name="domestic" id="domestic" /><br>
+						<input  style="margin-top: 10px" type="text" name="domestic" id="domestic" placeholder="Domestic Shipping Price" /><br>
 						International Shipping Price
-						<input  style="margin-top: 10px" type="text" name="international" id="international" /><br>
+						<input  style="margin-top: 10px" type="text" name="international" id="international" placeholder="International Shipping Price" /><br>
 
 
 						<div class="row">
 
 						<div class="col-5">
 
-						<input type="checkbox" name="free_shipping" id="free_shipping" onClick="free_shipping()" style="width:15px">
+						<input type="checkbox" name="free_shipping" id="free_shipping"  style="width:15px">
 
 						</div>
 
@@ -583,6 +583,22 @@
 				
 			$(document).ready(function(){
 			/*$('.colorPicker').colorPicker();*/
+			$('#free_shipping').click(function(){
+			if($("#free_shipping").prop("checked")==true)
+			{
+			$("#domestic").attr("readonly","true")
+			$("#international").attr("readonly","true")
+			$("#domestic").val("0.00")
+			$("#international").val("0.00")
+			}
+			else
+			{
+			$("#domestic").attr("readonly","false")
+			$("#international").attr("readonly","false")
+			$("#domestic").val("")
+			$("#international").val("")
+			}
+			});
 		     var cartcount=window.localStorage["cart"];
 		     
 		     $("#current_cart_count").html(cartcount);
@@ -733,15 +749,7 @@
 		}
 
 		$("#discountdiv").hide();
-		function free_shipping()
-		{
-			console.log('ok');
-			
-			$("#domestic").attr("readonly","true")
-			$("#international").attr("readonly","true")
-			$("#domestic").val("0.00")
-			$("#international").val("0.00")
-		}	
+		
 				
 		function fetch_category()
 		{

@@ -230,9 +230,38 @@
 	
 	/*console.log($('#checkout_ids').val());*/
 $(document).ready(function(){
+var k=0;
 
 $('#frm').submit(function(e) {
 	e.preventDefault();
+if(window.localStorage['cart']==0)
+	 {
+		   
+		 	var dataxx= "Please add item to cart for checkout";
+		    myApp.alert(dataxx);
+	        k = 1;  		
+		   
+	 }
+		 
+if($("#bill_a").val()=="")
+{
+	var dataxx= "Select billing address";
+			    myApp.alert(dataxx);
+		        k = 1;  		
+}
+
+if($("#ship_a").val()=="")
+{
+	var dataxx= "Select shipping address";
+			    myApp.alert(dataxx);
+		        k = 1;  		
+}
+
+
+if(k==0)
+{
+
+
 	var user=$('#checkout_user').val();
 	var cid=$('#checkout_ids').val();
 	var address=$('#checkout_addresses').val()
@@ -266,8 +295,9 @@ console.log(url);
    	ref.close();
     document.location.href='myorders.html';
    }
-
+}
 });
+
 var cartcount=window.localStorage["cart"];
 		     
 		     $("#current_cart_count").html(cartcount);

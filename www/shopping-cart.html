@@ -168,9 +168,9 @@
 					</div>
 					<div class="cart-contenttext">
 						<div class="carttotal">
-							<p><span class="sub-t">Subtotal <span class="sub-t-p" id="sub_tot">$999.99</span></span></p>
-							<p><span class="grand-t">Grand Total <span class="sub-t-p" id="grand_tot">$999.99</span></span>	</p>
-							<p><input type="button" class="mybutton" onClick="parse_url('checkout.html');" value="CHECKOUT">	</p>							
+							<p><span class="sub-t">Subtotal <span class="sub-t-p" id="sub_tot">$000.00</span></span></p>
+							<p><span class="grand-t">Grand Total <span class="sub-t-p" id="grand_tot">$000.00</span></span>	</p>
+							<p><input type="button" class="mybutton" onClick="goto_checkout()" value="CHECKOUT">	</p>							
 												
 						</div>
 					</div>	
@@ -195,6 +195,23 @@
     <script type="text/javascript" src="js/my-app.js"></script>
 <script>
 
+function goto_checkout()
+{
+	var k = 0;
+		 
+		if(window.localStorage['cart']==0)
+		 {
+			   
+			 	var dataxx= "Please add item to cart for checkout";
+			    myApp.alert(dataxx);
+		        k = 1;  		
+			   
+		 }
+		 if(k==0)
+		 {
+		 	document.location.href='checkout.html';
+		 }
+}
 function parse_url(val)
 {
 document.location.href= val;
