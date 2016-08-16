@@ -823,6 +823,7 @@
 		  var product_discount=$("#product_discount").val();
 		  console.log("product_discount"+product_discount)
 		  var discount_type=$("#discount_type").val();
+		  var shipping_method=$("#shipping_method").val();
 		  console.log("discount_type"+discount_type)
 
 		  form_data.append('token', token); 
@@ -831,6 +832,7 @@
 		  form_data.append('description', description); 
 		  form_data.append('available_qty', available_qty); 
 		  form_data.append('type', type); 
+		  form_data.append('size', size); 
 		  form_data.append('price', price); 
 		  form_data.append('colour', colour); 
 		  form_data.append('user_id', user_id);
@@ -854,6 +856,7 @@
 		  form_data.append('discount_type',discount_type);
 		  form_data.append('email',email);
 		  form_data.append('notes',notes);
+		  form_data.append('shipping_method',shipping_method);
 	 // console.log(form_data)
 		 var k = 0;
 		 

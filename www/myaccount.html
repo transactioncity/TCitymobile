@@ -390,8 +390,8 @@ var token = $('#token').val();
   
 
 
-
-
+console.log(dataxx.address[0])
+  window.localStorage['currency']=dataxx.address[0].currency_code;
    $('#state1').val(dataxx.address[0].state);
 $('#city1').val(dataxx.address[0].city);
  $('#contactname1').val(dataxx.address[0].contactname);
@@ -522,7 +522,7 @@ var website2 = $('#website2').val();
 				
 				var dataxx= "Succesfully Updated the user";
 				myApp.alert(dataxx); 
-				
+				get_user_details()
 				}
 				else
 				{
