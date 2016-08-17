@@ -253,19 +253,19 @@ function fetch_product_by_id()
 		 
 		 /*if(datayy[7]!=datayy[8])*/
 		 /*{*/
-		 	var rate = currencyConverter(datayy[7],datayy[8],datayy[2]) ;
+		 	/*var rate = currencyConverter(datayy[7],datayy[8],datayy[2]) ;*/
 		 /*}*/
 		 /*else
 		 {
 		 	 var rate=datayy[2];
 		 }*/
 		
-    /*var rate=datayy[2];*/
+    var rate=datayy[2];
 
 		 $('#hid').val(datayy[0]);
 		 $('#description').html(datayy[1]);
 		 $('#title').html(datayy[3]);
-		 $('#price').html(datayy[8]+"   "+rate);
+		 $('#price').html("USD $"+rate);
 		 $('#swiper-slide').html('<img style="height:140px;width:140px;cursor:pointer;border:#000000 solid 2px;padding:3px;"  src="http://www.transactioncity.com/stagingnew/content/uploads/products/pictures/'+datayy[4]+'">');
 		 $('#avail').html(datayy[5]);
 		 $('#seller').html(datayy[6]);
