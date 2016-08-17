@@ -360,14 +360,14 @@ var user_id = window.localStorage["id"];
 	 
 	 var obj = JSON.parse(data);console.log(obj);
 	 var flag=true;
-	 var toc;
+	 var toc=user_currency;
 	 var user_currency=window.localStorage['currency'];
 	 console.log('user_currency'+user_currency)
 	 var supported_currency=['AUD','BRL','CAD','CZK','DKK','EUR','HKD','HUF','ILS','JPY','MYR','MXN','NOK','NZD','PHP','PLN','GBP','RUB','SGD','SEK','CHF','TWD','THB','USD'];
 	 var arr=$.inArray(user_currency, supported_currency );
-	if(arr==0)
+	/*if(arr==0)
 		 {
-		 	/*fromc='USD';*/
+		 	fromc='USD';
 		 	toc=user_currency;
 		 	console.log(toc);
 		 	
@@ -376,7 +376,7 @@ var user_id = window.localStorage["id"];
 		 {
 		 	toc='USD';
 		 	myApp.alert('Your Currency '+user_currency+' is not supported by Paypal, Hence amount will be convert the US $ amount');
-		 }
+		 }*/
 		
 
 
